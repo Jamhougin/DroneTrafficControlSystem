@@ -16,6 +16,7 @@ from FloatInput import FloatInput
 
 from kivy.config import Config
 Config.set('graphics','maxfps','60')
+from kivy.lang import Builder
 
 from kivy.uix.behaviors.focus import FocusBehavior
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -49,6 +50,9 @@ corridors = []
 network = []
 drone_hidden = True
 location_hidden = True
+new_location_add = False
+name = ''
+location_layer = None
  
 class MapViewApp(App):
     mapview = None
@@ -63,6 +67,8 @@ class MapViewApp(App):
         return layout
  
     def post(self, *args):
+        
+        global location_layer
         layout = FloatLayout()
         self.mapview = MapView(zoom=18, lat=52.824725, lon=-6.935661)
         line = LineMapLayer()
@@ -83,8 +89,8 @@ class MapViewApp(App):
         buttonrow2 = BoxLayout(orientation='horizontal',height='30dp',size_hint_y=None)
         buttonrow3 = BoxLayout(orientation='horizontal',height='30dp',size_hint_y=None)
         
-        buttonrow1.add_widget(Button(text="Zoom in",on_press=lambda a: setattr(self.mapview,'zoom',self.mapview.zoom+1)))
         buttonrow1.add_widget(Button(text="RemoveDrone",on_press=lambda a: drone_layer.remove_drone_popup(), background_color = dronebuttoncolor))
+        buttonrow1.add_widget(Button(text="AddDrone",on_press=lambda a: drone_layer.add_virtual_drone_popup(), background_color = dronebuttoncolor))
         buttonrow1.add_widget(Button(text="ViewLocationsList",on_press=lambda a: location_layer.view_locations_popup(), background_color = locationbuttoncolor))
         buttonrow1.add_widget(Button(text="ViewLocationMarkers", background_color = locationbuttoncolor, on_press=lambda a: show_locations_button(self.mapview, location_layer, drone_layer)))
         
@@ -96,6 +102,7 @@ class MapViewApp(App):
         buttonrow3.add_widget(Button(text="CreateFlight",on_press=lambda a: flights_layer.create_flight_popup(), background_color = flightbuttoncolor))
         buttonrow3.add_widget(Button(text="RemoveFlight",on_press=lambda a: flights_layer.remove_flight_popup(), background_color = flightbuttoncolor))
         buttonrow3.add_widget(Button(text="StartFlight",on_press=lambda a: flights_layer.start_flight_popup(), background_color = flightbuttoncolor))
+        buttonrow3.add_widget(Button(text="AbortFlight",on_press=lambda a: flights_layer.abort_flight_popup(), background_color = flightbuttoncolor))
         #First button row
         self.root.add_widget(buttonrow1)
         #Second button row
@@ -121,7 +128,6 @@ class MapViewApp(App):
                     if type(child) is MarkerMapLayer:
                         #Remove all marker widgets and add back in Drone markers if not hidden
                         child.clear_widgets()
-                        #print(child.children)
                         if drone_hidden == False:
                             threads.append(Thread(target = dronesl.draw_drones, args = (dronesl, locationsl), daemon = True))
                             threads[len(threads)-1].start()
@@ -157,7 +163,18 @@ class LocationMarkerLayer(MapLayer):
         super(LocationMarkerLayer, self).__init__(**kwargs)
         self.zoom = 0
         locationview = self.parent
-        
+    
+    #Adds functionality to kivy's on_touch_down() event, specificly for adding new Locations    
+    def on_touch_down(self, touch):
+            global new_location_add
+            global location_layer
+            
+            if new_location_add == True:
+                print(touch.pos[0])
+                print(touch.pos[1])
+                location_layer.add_point(touch.pos[0],touch.pos[1],0)
+            return super(LocationMarkerLayer, self).on_touch_down(touch)
+
     def draw_locations(self, *args):
         locationview = self.parent
         self.zoom = locationview.zoom
@@ -167,36 +184,41 @@ class LocationMarkerLayer(MapLayer):
             # Draw new Location markers
             locationview.add_marker(MapMarker(lat=location.getlocationlatitude(), lon=location.getlocationlongitude(), source='images/MapMarker.png'))
            
-    def add_point(self, name, lat, lon, alt):
+    def add_point(self, lat, lon, alt):
         global locations
-        newlocation = Location(name, lat, lon, alt)
-        #: Add a point a chosen coordinates
-        print("location to add:")
-        print (newlocation.getlocationname())
-        locations.append(newlocation)
-        SaveLocationList(locations)
-       
+        global new_location_add
+        global name
+        if new_location_add == True:
+            newlocation = Location(name, self.parent.get_latlon_at(lat,lon)[0], self.parent.get_latlon_at(lat,lon)[1], alt)
+            new_location_add = False
+            #: Add a point a chosen coordinates
+            print("location to add:")
+            print (newlocation.getlocationname())
+            locations.append(newlocation)
+            self.draw_locations()
+            SaveLocationList(locations)
+    
+    def set_loc_name(self, nname):
+        global name
+        global new_location_add
+        name = nname
+        new_location_add = True
+        
     def add_point_popup(self):
+        mapview = self.parent
         global locations
-
+        global name
+        global new_location_add
         self.root = BoxLayout(orientation='vertical')
         nameinput = TextInput(hint_text="name", multiline=False)
-        
-        latinput = FloatInput(hint_text="latitude", multiline=False)
 
-        loninput = FloatInput(hint_text="longitude", multiline=False)
-        
-        #Text boxes to add location info
         self.root.add_widget(nameinput, index=0)
-        self.root.add_widget(latinput, index=0)
-        self.root.add_widget(loninput, index=0)
 
-        self.root.add_widget(Button(text="AddPoint",on_press=lambda a: self.add_point(nameinput.text, latinput.text, loninput.text, 0)))
         self.popup = Popup(title="Add Location", auto_dismiss=True, size_hint=(.5,.5))
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="Add Location Name",on_press=lambda a: (self.popup.dismiss(),self.set_loc_name(nameinput.text))))
         self.popup.add_widget(self.root)    
         self.popup.open()
-        
+         
     def view_locations_popup(self):
            
         self.root = BoxLayout(orientation='vertical')
@@ -204,20 +226,26 @@ class LocationMarkerLayer(MapLayer):
         
         self.root.add_widget(Label(text= location_list()))
         self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
-        self.popup = Popup(title="View Location List", auto_dismiss=True, size_hint=(.5,.5))
+        self.popup = Popup(title="View Location List", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()
   
     def remove_location_popup(self):
         def buttonPressRemoveLocation(selection):
             global locations
+            global drone_hidden
+            global location_hidden
+            global threads
             if int(selection) < 1 or int(selection) > len(locations):
                 return
             
             del locations[int(selection)-1]
             SaveLocationList(locations)
+
         
         self.root = BoxLayout(orientation='vertical')
+        
+        locationlistview = RecycleView(data= location_list())
         
         self.root.add_widget(Label(text= location_list()))
         
@@ -226,7 +254,7 @@ class LocationMarkerLayer(MapLayer):
         self.root.add_widget(Button(text="RemoveLocation",on_press=lambda a: buttonPressRemoveLocation(location.text)))
         
         self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
-        self.popup = Popup(title="Remove Location", auto_dismiss=True, size_hint=(.5,.5))
+        self.popup = Popup(title="Remove Location", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()
                           
@@ -246,7 +274,7 @@ class DroneMarkerLayer(MapLayer):
                 home_loc = location
                 
                 global drones
-                newdrone = VirtualDrone(name, "Virtual", home_loc.getlocationlatitude(), home_loc.getlocationlongitude(), home_loc.getlocationlatitude(), home_loc.getlocationlongitude(), 0, 100, 0, "Grounded", 0)
+                newdrone = VirtualDrone(name, "Virtual", float(home_loc.getlocationlatitude()), float(home_loc.getlocationlongitude()), float(home_loc.getlocationlatitude()), float(home_loc.getlocationlongitude()), 0, 100, 0, "Grounded", 0)
                 break
         
 
@@ -257,10 +285,8 @@ class DroneMarkerLayer(MapLayer):
         global drones
         global locations
         self.root = BoxLayout(orientation='vertical')
-        nameinput = TextInput(hint_text="drone name", multiline=False)
-        
+        nameinput = TextInput(hint_text="drone name", multiline=False)        
         homeinput = TextInput(hint_text="home location name", multiline=False)
-
         
         #Text boxes to add location info
         self.root.add_widget(nameinput, index=0)
@@ -268,7 +294,7 @@ class DroneMarkerLayer(MapLayer):
         self.root.add_widget(homeinput, index=0)
 
         self.root.add_widget(Button(text="AddDrone",on_press=lambda a: self.add_virtual_drone(nameinput.text, homeinput.text)))
-        self.popup = Popup(title="Add Drone", auto_dismiss=True, size_hint=(.5,.5))
+        self.popup = Popup(title="Add Drone", auto_dismiss=True, size_hint=(.9,.8))
         self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
         self.popup.add_widget(self.root)    
         self.popup.open()
@@ -291,13 +317,18 @@ class DroneMarkerLayer(MapLayer):
         self.root.add_widget(Button(text="RemoveDrone",on_press=lambda a: buttonPressRemoveDrone(location.text)))
         
         self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
-        self.popup = Popup(title="Remove Drone", auto_dismiss=True, size_hint=(.5,.5))
+        self.popup = Popup(title="Remove Drone", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()
         
     def insert_drone_image(self, drone, *largs):
         droneview = self.parent
-        droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/Drone.png"))
+        if drone.getdronestate() == "Descending":
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneDescending.png"))
+        elif drone.getdronestate() == "Ascending":
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneAscending.png"))
+        else:
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/Drone.png"))
         
     def draw_drones(self, dronel, locationl):
         dronel = dronel
@@ -353,7 +384,7 @@ class FlightLayer(MapLayer):
         global flights
         global locations
         global drones
-        new_flight = Flight("F", 0, 0, 0, 0, "D", False)
+        new_flight = Flight("F", 0, 0, 0, 0, "D", False, False)
         
         def buttonPressAddFlightName(newflight, name):
             newflight.setflightid(name)
@@ -416,20 +447,40 @@ class FlightLayer(MapLayer):
         self.root.add_widget(Button(text="CancelFlight",on_press=lambda a: buttonPressRemoveFlight(flight.text)))
         
         self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
-        self.popup = Popup(title="Cancel Flight", auto_dismiss=True, size_hint=(.9,.5))
+        self.popup = Popup(title="Cancel Flight", auto_dismiss=True, size_hint=(.9,.8))
+        self.popup.add_widget(self.root)
+        self.popup.open() 
+        
+    def abort_flight_popup(self):
+        def buttonPressAbortFlight(selection):
+            global flights
+            flights[int(selection)-1].setflightabort(True)
+            SaveFlightList(flights)
+        
+        self.root = BoxLayout(orientation='vertical')
+        
+        self.root.add_widget(Label(text= flight_list()))
+        
+        flight = FloatInput(hint_text="Enter Number corresponding to flight", multiline=False)
+        self.root.add_widget(flight)
+        self.root.add_widget(Button(text="AbortFlight",on_press=lambda a: buttonPressAbortFlight(flight.text)))
+        
+        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.popup = Popup(title="Abort Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open() 
         
     def start_flight_popup(self):
         def buttonPressBeginFlight(selection):
             global flights
+            global locations
             global drones
             global threads
             
             for drone in drones:
                 if drone.drone_id == flights[int(selection)-1].getdrone():
                     flight_drone = drone
-            threads.append(Thread(target = TakeOffFlyLand,  args = (flight_drone, flights[int(selection)-1], drones), daemon = True))
+            threads.append(Thread(target = TakeOffFlyLand,  args = (flight_drone, flights[int(selection)-1], drones, locations), daemon = True))
             threads[len(threads)-1].start()
         
         self.root = BoxLayout(orientation='vertical')
@@ -441,7 +492,7 @@ class FlightLayer(MapLayer):
         self.root.add_widget(Button(text="BeginFlight",on_press=lambda a: buttonPressBeginFlight(flight.text)))
         
         self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
-        self.popup = Popup(title="Start Flight", auto_dismiss=True, size_hint=(.9,.5))
+        self.popup = Popup(title="Start Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()                        
             
@@ -572,5 +623,5 @@ class LineMapLayer(MapLayer):
                 Line(points=line_points, width=1)#4/ms)#, joint="round",joint_precision=100)
                 self.canvas.ask_update()
 
-
-MapViewApp().run()
+if __name__ == "__main__":
+    MapViewApp().run()

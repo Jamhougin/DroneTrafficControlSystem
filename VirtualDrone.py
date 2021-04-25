@@ -46,7 +46,7 @@ class VirtualDrone(AbstractDrone):
 
     def changealtitude(self, alt):
         self.altitude = alt
-        self.flying_state = "Changing Altitude"
+        #self.flying_state = "Changing Altitude"
 
     def land(self):
         self.altitude = 0
@@ -54,8 +54,8 @@ class VirtualDrone(AbstractDrone):
 
     def getgpsposition(self):
         name = self.drone_id
-        lat = self.current_latitude
-        lon = self.current_longitude
+        lat = float(self.current_latitude)
+        lon = float(self.current_longitude)
         alt = self.altitude
         
         return name, lat, lon, alt
@@ -117,13 +117,13 @@ class VirtualDrone(AbstractDrone):
         self.current_latitude = lat
 
     def getcurrentlatitude(self):
-        return self.current_latitude
+        return float(self.current_latitude)
 
     def setcurrentlongitude(self,lon):
         self.current_longitude = lon
 
     def getcurrentlongitude(self):
-        return self.current_longitude
+        return float(self.current_longitude)
 
     def getdistancetodestination(self):
         #Get travel distance from point to point
@@ -133,8 +133,8 @@ class VirtualDrone(AbstractDrone):
         
         radius = 6371 #Radius in km of Earth
 
-        deg_latitude = math.radians(self.destination_latitude - self.current_latitude)
-        deg_longitude = math.radians(self.destination_longitude - self.current_longitude)
+        deg_latitude = math.radians(self.destination_latitude -float(self.current_latitude))
+        deg_longitude = math.radians(self.destination_longitude -float(self.current_longitude))
 
         #a = Square of half the chord length between two points
         a = math.sin(deg_latitude/2) * math.sin(deg_latitude/2) + math.cos(math.radians(self.current_latitude)) * math.cos(math.radians(self.destination_latitude)) * math.sin(deg_longitude/2) * math.sin(deg_longitude/2)
@@ -152,11 +152,11 @@ class VirtualDrone(AbstractDrone):
         
         radius = 6371 #Average Radius in km of Earth
 
-        deg_latitude = math.radians(poslat - self.current_latitude)
-        deg_longitude = math.radians(poslon - self.current_longitude)
+        deg_latitude = math.radians(poslat - float(self.current_latitude))
+        deg_longitude = math.radians(poslon - float(self.current_longitude))
 
         #a = Square of half the chord length between two points
-        a = math.sin(deg_latitude/2) * math.sin(deg_latitude/2) + math.cos(math.radians(self.current_latitude)) * math.cos(math.radians(self.destination_latitude)) * math.sin(deg_longitude/2) * math.sin(deg_longitude/2)
+        a = math.sin(deg_latitude/2) * math.sin(deg_latitude/2) + math.cos(math.radians(float(self.current_latitude))) * math.cos(math.radians(float(self.destination_latitude))) * math.sin(deg_longitude/2) * math.sin(deg_longitude/2)
         #c = Angular distance in radians
         c = 2 * math.atan2(math.sqrt(a),math.sqrt(1-a))
         d = radius * c
@@ -164,18 +164,18 @@ class VirtualDrone(AbstractDrone):
         return d
 
     def createvector(self):
-        self.vectorlat = self.destination_latitude - self.current_latitude
-        self.vectorlon = self.destination_longitude - self.current_longitude
+        self.vectorlat = float(self.destination_latitude) -float(self.current_latitude)
+        self.vectorlon = float(self.destination_longitude) -float(self.current_longitude)
 
         return self.vectorlat, self.vectorlon
 
     def getvectorlatitude(self):
-        vectorlat = self.destination_latitude - self.home_latitude
+        vectorlat = float(self.destination_latitude) - self.home_latitude
 
         return vectorlat
 
     def getvectorlongitude(self):
-        vectorlon = self.destination_longitude - self.home_longitude
+        vectorlon = float(self.destination_longitude )- self.home_longitude
 
         return vectorlon
 
@@ -183,13 +183,13 @@ class VirtualDrone(AbstractDrone):
         direction_length = math.sqrt(math.pow(self.getvectorlatitude(),2) + math.pow(self.getvectorlongitude(),2))
         normalised_vector_lat = self.getvectorlatitude() / direction_length
         normalised_vector_lon = self.getvectorlongitude() / direction_length
-        self.current_latitude = self.current_latitude + (normalised_vector_lat*(self.speed*1))
-        self.current_longitude = self.current_longitude + (normalised_vector_lon*(self.speed*1))
+        self.current_latitude=float(self.current_latitude)+ (normalised_vector_lat*(self.speed*1))
+        self.current_longitude =float(self.current_longitude) + (normalised_vector_lon*(self.speed*1))
 
 
-    def getbearing(self, startlat, startlong, destlat, destlong):
-        bearing = Geodesic.WGS84.Inverse(startlat,startlong, destlat, destlong)["azi1"]
-        return bearing
+    def getheadding(self, startlat, startlong, destlat, destlong):
+        heading = Geodesic.WGS84.Inverse(startlat,startlong, destlat, destlong)["azi1"]
+        return heading
         
     def getdronetype(self):
         return self.drone_type

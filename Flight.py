@@ -2,7 +2,7 @@
 
 class Flight():
 
-    def __init__(self, name, startlatitude, startlongitude, destlatitude, destlongitude, drone, flightcomplete):
+    def __init__(self, name, startlatitude, startlongitude, destlatitude, destlongitude, drone, flightcomplete, flightabort):
         self.flight_id = name
         self.start_latitude = startlatitude
         self.start_longitude = startlongitude
@@ -10,6 +10,7 @@ class Flight():
         self.destination_longitude = destlongitude
         self.flight_drone = drone
         self.flight_complete = flightcomplete
+        self.flight_abort = flightabort
         
     def setflightid(self, name):
         self.flight_id = name
@@ -59,3 +60,10 @@ class Flight():
     def getflightcomplete(self):
         flightcomplete = self.flight_complete
         return flightcomplete
+        
+    def setflightabort(self, flightabort):
+        self.flight_abort = flightabort
+        
+    def getflightabort(self):
+        flightabort = self.flight_abort
+        return flightabort

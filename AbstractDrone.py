@@ -1,9 +1,3 @@
-
-# -*- coding: UTF-8 -*-
-
-#import olympe
-#from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, moveTo, Landing
-#from olympe.messages.ardrone3.PilotingState import GpsLocationChanged, FlyingStateChanged, moveToChanged, PositionChanged
 from abc import ABC, abstractmethod
 
 class AbstractDrone(ABC):
