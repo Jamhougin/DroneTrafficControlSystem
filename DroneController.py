@@ -171,6 +171,7 @@ def TakeOffFlyLand(drone, flight, dronelist, locationlist):
                 print(f.getflightid())
                 print(flight.getflightid())
                 f.setflightcomplete(True)
+                SaveDroneList(dronelist)
                 SaveFlightList(flights)
                 print('complete:', f.getflightcomplete())
                 break

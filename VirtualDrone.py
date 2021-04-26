@@ -187,7 +187,7 @@ class VirtualDrone(AbstractDrone):
         self.current_longitude =float(self.current_longitude) + (normalised_vector_lon*(self.speed*1))
 
 
-    def getheadding(self, startlat, startlong, destlat, destlong):
+    def getbearing(self, startlat, startlong, destlat, destlong):
         heading = Geodesic.WGS84.Inverse(startlat,startlong, destlat, destlong)["azi1"]
         return heading
         

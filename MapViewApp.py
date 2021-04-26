@@ -31,6 +31,8 @@ from kivy.uix.popup import Popup
 from kivy.uix.image import Image
 from kivy.properties import ObjectProperty, NumericProperty, StringProperty, BooleanProperty
 from kivy.uix.recycleview import RecycleView
+from kivy.uix.scrollview import ScrollView
+from kivy.core.window import Window
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -84,6 +86,7 @@ class MapViewApp(App):
         dronebuttoncolor = [.3,1,0,1] #Green
         locationbuttoncolor = [.5,1,1,1] #Blue
         flightbuttoncolor = [1,1,.5,1] #Yellow
+        
 
         buttonrow1 = BoxLayout(orientation='horizontal',height='30dp',size_hint_y=None)
         buttonrow2 = BoxLayout(orientation='horizontal',height='30dp',size_hint_y=None)
@@ -209,23 +212,29 @@ class LocationMarkerLayer(MapLayer):
         global locations
         global name
         global new_location_add
-        self.root = BoxLayout(orientation='vertical')
-        nameinput = TextInput(hint_text="name", multiline=False)
-
+        self.root = BoxLayout(orientation='vertical',spacing=15)
+        
+        nameinput = TextInput(hint_text="name", multiline=False, size_hint=(.9, None), pos_hint ={'center_x': .5,'center_y': 1}, height=40)
         self.root.add_widget(nameinput, index=0)
 
         self.popup = Popup(title="Add Location", auto_dismiss=True, size_hint=(.5,.5))
-        self.root.add_widget(Button(text="Add Location Name",on_press=lambda a: (self.popup.dismiss(),self.set_loc_name(nameinput.text))))
+        self.root.add_widget(Button(text="Add Location Name", size_hint=(.9,.7), pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: (self.popup.dismiss(),self.set_loc_name(nameinput.text))))
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1], size_hint=(.9,.7), pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
         self.popup.add_widget(self.root)    
         self.popup.open()
          
     def view_locations_popup(self):
            
-        self.root = BoxLayout(orientation='vertical')
+        self.root = BoxLayout(orientation='vertical',spacing=15)
         
+        #Scrollable location list
+        locationlistview = Label(text= location_list(),size_hint=(1.01, None))
+        locationlistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/2),scroll_y=1, do_scroll_x=False, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        locationlistviewscroll.add_widget(locationlistview)
+        locationlistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(locationlistviewscroll)
         
-        self.root.add_widget(Label(text= location_list()))
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1], size_hint=(.9,.7), pos_hint ={'center_x': .5,'center_y': 1}, on_press=lambda a: self.popup.dismiss()))
         self.popup = Popup(title="View Location List", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()
@@ -243,17 +252,21 @@ class LocationMarkerLayer(MapLayer):
             SaveLocationList(locations)
 
         
-        self.root = BoxLayout(orientation='vertical')
+        self.root = BoxLayout(orientation='vertical',spacing=15)
         
-        locationlistview = RecycleView(data= location_list())
+        locationlistview = Label(text= location_list(),size_hint=(1.01, None))
+        locationlistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/4),scroll_y=1, do_scroll_x=False, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        locationlistviewscroll.add_widget(locationlistview)
+        locationlistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(locationlistviewscroll)
         
-        self.root.add_widget(Label(text= location_list()))
-        
-        location = FloatInput(hint_text="Enter Number corresponding to location", multiline=False)
+        location = FloatInput(hint_text="Enter Number corresponding to location", multiline=False, size_hint=(.9, None), pos_hint ={'center_x': .5,'center_y': 1},height=40)
         self.root.add_widget(location)
-        self.root.add_widget(Button(text="RemoveLocation",on_press=lambda a: buttonPressRemoveLocation(location.text)))
+        self.root.add_widget(Button(text="RemoveLocation", size_hint=(.9,.8), pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressRemoveLocation(location.text)))
         
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1], size_hint=(.9,.8), pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
+        
+        #Add popup widget to root
         self.popup = Popup(title="Remove Location", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()
@@ -284,18 +297,26 @@ class DroneMarkerLayer(MapLayer):
     def add_virtual_drone_popup(self):
         global drones
         global locations
-        self.root = BoxLayout(orientation='vertical')
-        nameinput = TextInput(hint_text="drone name", multiline=False)        
-        homeinput = TextInput(hint_text="home location name", multiline=False)
+        self.root = BoxLayout(orientation='vertical',spacing=15)
+        nameinput = TextInput(hint_text="drone name", multiline=False,size_hint=(.9, None),pos_hint ={'center_x': .5,'center_y': 1},height=40)        
+        homeinput = TextInput(hint_text="home location name", multiline=False,size_hint=(.9, None),pos_hint ={'center_x': .5,'center_y': 1},height=40)
         
         #Text boxes to add location info
         self.root.add_widget(nameinput, index=0)
-        self.root.add_widget(Label(text= location_list()))
+        
+        locationlistview = Label(text= location_list(),size_hint=(1, None))        
+        locationlistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/4), do_scroll_x=False, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        locationlistviewscroll.add_widget(locationlistview)
+        locationlistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(locationlistviewscroll)
+        
         self.root.add_widget(homeinput, index=0)
 
-        self.root.add_widget(Button(text="AddDrone",on_press=lambda a: self.add_virtual_drone(nameinput.text, homeinput.text)))
+        self.root.add_widget(Button(text="AddDrone",size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: self.add_virtual_drone(nameinput.text, homeinput.text)))
         self.popup = Popup(title="Add Drone", auto_dismiss=True, size_hint=(.9,.8))
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1],size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
+        
+        #Add popup widget to root
         self.popup.add_widget(self.root)    
         self.popup.open()
         
@@ -308,27 +329,48 @@ class DroneMarkerLayer(MapLayer):
             del drones[int(selection)-1]
             SaveDroneList(drones)
         
-        self.root = BoxLayout(orientation='vertical')
+        self.root = BoxLayout(orientation='vertical',spacing=15)
         
-        self.root.add_widget(Label(text= drone_list()))
+        #Scrollable Drone list
+        dronelistview = Label(text= drone_list(),size_hint=(1.01, None))
+        dronelistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/4), do_scroll_x=False, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        dronelistviewscroll.add_widget(dronelistview) 
+        dronelistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(dronelistviewscroll)
         
-        location = FloatInput(hint_text="Enter Number corresponding to drone", multiline=False)
+        #Input box
+        location = FloatInput(hint_text="Enter Number corresponding to drone", multiline=False, size_hint=(.9,None), pos_hint={'center_x': .5,'center_y': 1},height=40)
         self.root.add_widget(location)
-        self.root.add_widget(Button(text="RemoveDrone",on_press=lambda a: buttonPressRemoveDrone(location.text)))
         
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="RemoveDrone", size_hint=(.9,.7), pos_hint={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressRemoveDrone(location.text)))
+        
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1], size_hint=(.9,.7), pos_hint={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
+        
+        #Add popup widget to root
         self.popup = Popup(title="Remove Drone", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()
         
     def insert_drone_image(self, drone, *largs):
         droneview = self.parent
-        if drone.getdronestate() == "Descending":
+        if drone.getdronestate() == "Descending" and drone.getbattery() > 50:
             droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneDescending.png"))
-        elif drone.getdronestate() == "Ascending":
+        elif drone.getdronestate() == "Descending" and drone.getbattery() <= 50:
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneDescending50batt.png"))
+        elif drone.getdronestate() == "Descending" and drone.getbattery() <= 10:
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneDescending10batt.png"))
+        elif drone.getdronestate() == "Ascending" and drone.getbattery() > 50:
             droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneAscending.png"))
-        else:
+        elif drone.getdronestate() == "Ascending" and drone.getbattery() <= 50:
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneAscending50batt.png"))
+        elif drone.getdronestate() == "Ascending" and drone.getbattery() <= 10:
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneAscending10batt.png"))
+        elif drone.getbattery() > 50:
             droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/Drone.png"))
+        elif drone.getbattery() <= 50:
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/Drone50batt.png"))
+        else:
+            droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/Drone10batt.png"))
         
     def draw_drones(self, dronel, locationl):
         dronel = dronel
@@ -370,11 +412,15 @@ class FlightLayer(MapLayer):
 
     def view_flights_popup(self):
            
-        self.root = BoxLayout(orientation='vertical')
+        self.root = BoxLayout(orientation='vertical',spacing=15)
         
+        flightlistview = Label(text= flight_list(),size_hint=(1.01, None))
+        flightlistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/2),scroll_y=1, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        flightlistviewscroll.add_widget(flightlistview)
+        flightlistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(flightlistviewscroll)
         
-        self.root.add_widget(Label(text= flight_list()))
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1], size_hint=(.9,.7), pos_hint={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
         self.popup = Popup(title="View Flight List", auto_dismiss=True, size_hint=(.9,.7))
         self.popup.add_widget(self.root)
         self.popup.open()  
@@ -398,7 +444,7 @@ class FlightLayer(MapLayer):
         
         def buttonPressAddDestination(newflight, locations, selection):
             for location in locations:
-                if location.getlocationname() == selection:
+                if location.getlocationname() == locations[int(selection)-1].getlocationname():
                     newflight.setdestinationlatitude(location.getlocationlatitude())
                     newflight.setdestinationlongitude(location.getlocationlongitude())
             
@@ -409,25 +455,34 @@ class FlightLayer(MapLayer):
         
         self.root = BoxLayout(orientation='vertical', spacing =5)
         
-        flightname = TextInput(hint_text="Flight Name", multiline=False)
+        flightname = TextInput(hint_text="Flight Name", multiline=False,size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1})
         self.root.add_widget(flightname)
-                
-        self.root.add_widget(Label(text= drone_list()))
         
-        drone = TextInput(hint_text="Drone choice", multiline=False)
+        #Scrollable Drone list
+        dronelistview = Label(text= drone_list(),size_hint=(1.01, None))
+        dronelistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/8), do_scroll_x=False, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        dronelistviewscroll.add_widget(dronelistview) 
+        dronelistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(dronelistviewscroll)
+        
+        drone = TextInput(hint_text="Drone choice", multiline=False,size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1})
         self.root.add_widget(drone)
         
-        self.root.add_widget(Label(text= location_list()))
+        locationlistview = Label(text= location_list(),size_hint=(1.01, None))
+        locationlistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/8), do_scroll_x=False,scroll_y=1, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        locationlistviewscroll.add_widget(locationlistview)
+        locationlistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(locationlistviewscroll)
         
-        location = TextInput(hint_text="Destination Choice", multiline=False)
+        location = FloatInput(hint_text="Destination Choice", multiline=False,size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1})
         self.root.add_widget(location)
         
-        self.root.add_widget(Button(text="AddFlightName",on_press=lambda a: buttonPressAddFlightName(new_flight, flightname.text)))
-        self.root.add_widget(Button(text="AddDrone",on_press=lambda a: buttonPressAddDrone(new_flight, drones, drone.text)))
-        self.root.add_widget(Button(text="AddDestination",on_press=lambda a: buttonPressAddDestination(new_flight, locations, location.text)))
-        self.root.add_widget(Button(text="AddFlight",on_press=lambda a: buttonPressAddFlight(new_flight, flights)))
+        self.root.add_widget(Button(text="AddFlightName",size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressAddFlightName(new_flight, flightname.text)))
+        self.root.add_widget(Button(text="AddDrone",size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressAddDrone(new_flight, drones, drone.text)))
+        self.root.add_widget(Button(text="AddDestination",size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressAddDestination(new_flight, locations, location.text)))
+        self.root.add_widget(Button(text="AddFlight",size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressAddFlight(new_flight, flights)))
         
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1],size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
         self.popup = Popup(title="Add Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()  
@@ -438,15 +493,19 @@ class FlightLayer(MapLayer):
             del flights[int(selection)-1]
             SaveFlightList(flights)
         
-        self.root = BoxLayout(orientation='vertical')
+        self.root = BoxLayout(orientation='vertical',spacing=15)
         
-        self.root.add_widget(Label(text= flight_list()))
+        flightlistview = Label(text= flight_list(),size_hint=(1.01, None))
+        flightlistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/4),scroll_y=1, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        flightlistviewscroll.add_widget(flightlistview)
+        flightlistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(flightlistviewscroll)
         
-        flight = FloatInput(hint_text="Enter Number corresponding to flight", multiline=False)
+        flight = FloatInput(hint_text="Enter Number corresponding to flight", multiline=False, size_hint=(.9, None), pos_hint ={'center_x': .5,'center_y': 1}, height = 40)
         self.root.add_widget(flight)
-        self.root.add_widget(Button(text="CancelFlight",on_press=lambda a: buttonPressRemoveFlight(flight.text)))
+        self.root.add_widget(Button(text="CancelFlight",size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressRemoveFlight(flight.text)))
         
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1],size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
         self.popup = Popup(title="Cancel Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open() 
@@ -457,15 +516,22 @@ class FlightLayer(MapLayer):
             flights[int(selection)-1].setflightabort(True)
             SaveFlightList(flights)
         
-        self.root = BoxLayout(orientation='vertical')
+        self.root = BoxLayout(orientation='vertical',spacing=15)
         
-        self.root.add_widget(Label(text= flight_list()))
+        #Scrollable list of flights
+        flightlistview = Label(text= flight_list(),size_hint=(1.01, None))
+        flightlistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/4),scroll_y=1, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        flightlistviewscroll.add_widget(flightlistview)
+        flightlistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(flightlistviewscroll)
         
-        flight = FloatInput(hint_text="Enter Number corresponding to flight", multiline=False)
+        #Input Box
+        flight = FloatInput(hint_text="Enter Number corresponding to flight", multiline=False, size_hint=(.9, None), pos_hint ={'center_x': .5,'center_y': 1},height=40)
         self.root.add_widget(flight)
-        self.root.add_widget(Button(text="AbortFlight",on_press=lambda a: buttonPressAbortFlight(flight.text)))
         
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="AbortFlight",size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressAbortFlight(flight.text)))
+        
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1],size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
         self.popup = Popup(title="Abort Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open() 
@@ -483,15 +549,19 @@ class FlightLayer(MapLayer):
             threads.append(Thread(target = TakeOffFlyLand,  args = (flight_drone, flights[int(selection)-1], drones, locations), daemon = True))
             threads[len(threads)-1].start()
         
-        self.root = BoxLayout(orientation='vertical')
+        self.root = BoxLayout(orientation='vertical',spacing=15)
 
-        self.root.add_widget(Label(text= flight_list()))
+        flightlistview = Label(text= flight_list(),size_hint=(1.01, None))
+        flightlistviewscroll = ScrollView(size_hint=(1, None), size=(Window.width, Window.height/4),scroll_y=1, scroll_type=['bars','content'], bar_width = 10, pos_hint ={'center_x': .5,'center_y': 1})
+        flightlistviewscroll.add_widget(flightlistview)
+        flightlistviewscroll.effect_cls.spring_constant=0
+        self.root.add_widget(flightlistviewscroll)
         
-        flight = FloatInput(hint_text="Enter Number corresponding to flight", multiline=False)
+        flight = FloatInput(hint_text="Enter Number corresponding to flight", multiline=False, size_hint=(.9, None), pos_hint ={'center_x': .5,'center_y': 1}, height = 40)
         self.root.add_widget(flight)
-        self.root.add_widget(Button(text="BeginFlight",on_press=lambda a: buttonPressBeginFlight(flight.text)))
+        self.root.add_widget(Button(text="BeginFlight",size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: buttonPressBeginFlight(flight.text)))
         
-        self.root.add_widget(Button(text="Close window",on_press=lambda a: self.popup.dismiss()))
+        self.root.add_widget(Button(text="Close window", background_color = [1,0,0,1],size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1},on_press=lambda a: self.popup.dismiss()))
         self.popup = Popup(title="Start Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()                        
