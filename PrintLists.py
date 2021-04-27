@@ -9,14 +9,14 @@ def flight_list():
         string += str(number)
         string += ": "
         string += flight.getflightid()
-        string += "Start Lat/Lon:"
-        string += str(flight.getstartlatitude())
+        string += "  Start Lat/Lon:"
+        string += str(round(flight.getstartlatitude(), 4))
         string += "/"
-        string += str(flight.getstartlongitude())
-        string += " End Lat/Lon:"
-        string += str(flight.getdestinationlatitude())
+        string += str(round(flight.getstartlongitude(), 4))
+        string += "  End Lat/Lon:"
+        string += str(round(flight.getdestinationlatitude(), 4))
         string += "/"
-        string += str(flight.getdestinationlongitude())
+        string += str(round(flight.getdestinationlongitude(), 4))
         string += " Drone:"
         string += flight.getdrone()
         string += " Complete:"
@@ -36,9 +36,9 @@ def location_list():
         string += ": "
         string += location.getlocationname()
         string += " Lat:"
-        string += str(location.getlocationlatitude())
+        string += str(round(location.getlocationlatitude(),4))
         string += " Lon:"
-        string += str(location.getlocationlongitude())
+        string += str(round(location.getlocationlongitude(),4))
         string += "\n"
         number += 1
         
@@ -54,9 +54,9 @@ def drone_list():
         string += ": Name:"
         string += drone.drone_id
         string += " Lat:"
-        string += str(drone.gethomelatitude())
+        string += str(round(drone.gethomelatitude(),4))
         string += " Lon:"
-        string += str(drone.gethomelongitude())
+        string += str(round(drone.gethomelongitude(),4))
         string += "\n"
         number += 1
         

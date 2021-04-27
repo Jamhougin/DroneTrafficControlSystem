@@ -282,24 +282,25 @@ class DroneMarkerLayer(MapLayer):
     
     def add_virtual_drone(self, name, home):
         global locations
-        for location in locations:
-            if location.getlocationname() == home:
-                home_loc = location
-                
-                global drones
-                newdrone = VirtualDrone(name, "Virtual", float(home_loc.getlocationlatitude()), float(home_loc.getlocationlongitude()), float(home_loc.getlocationlatitude()), float(home_loc.getlocationlongitude()), 0, 100, 0, "Grounded", 0)
-                break
-        
+        if int(home) <= len(locations):
+            for location in locations:
+                if location.getlocationname() == locations[int(home)-1].getlocationname():
+                    home_loc = location
+                    
+                    global drones
+                    newdrone = VirtualDrone(name, "Virtual", float(home_loc.getlocationlatitude()), float(home_loc.getlocationlongitude()), float(home_loc.getlocationlatitude()), float(home_loc.getlocationlongitude()), 0, 100, 0, "Grounded", 0)
+                    break
+            
 
-        drones.append(newdrone)
-        SaveDroneList(drones)
+            drones.append(newdrone)
+            SaveDroneList(drones)
         
     def add_virtual_drone_popup(self):
         global drones
         global locations
         self.root = BoxLayout(orientation='vertical',spacing=15)
         nameinput = TextInput(hint_text="drone name", multiline=False,size_hint=(.9, None),pos_hint ={'center_x': .5,'center_y': 1},height=40)        
-        homeinput = TextInput(hint_text="home location name", multiline=False,size_hint=(.9, None),pos_hint ={'center_x': .5,'center_y': 1},height=40)
+        homeinput = FloatInput(hint_text="home location name", multiline=False,size_hint=(.9, None),pos_hint ={'center_x': .5,'center_y': 1},height=40)
         
         #Text boxes to add location info
         self.root.add_widget(nameinput, index=0)
@@ -437,7 +438,7 @@ class FlightLayer(MapLayer):
         
         def buttonPressAddDrone(newflight, drones, selection):
             for drone in drones:
-                if drone.drone_id == selection:
+                if drone.drone_id == drones[int(selection)-1].drone_id:
                     newflight.setdrone(drone.drone_id)
                     newflight.setstartlatitude(drone.gethomelatitude())
                     newflight.setstartlongitude(drone.gethomelongitude())
@@ -451,6 +452,7 @@ class FlightLayer(MapLayer):
         def buttonPressAddFlight(newflight, flights):
             flights.append(newflight)
             SaveFlightList(flights)
+            self.popup.dismiss()
 
         
         self.root = BoxLayout(orientation='vertical', spacing =5)
@@ -465,7 +467,7 @@ class FlightLayer(MapLayer):
         dronelistviewscroll.effect_cls.spring_constant=0
         self.root.add_widget(dronelistviewscroll)
         
-        drone = TextInput(hint_text="Drone choice", multiline=False,size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1})
+        drone = FloatInput(hint_text="Drone choice", multiline=False,size_hint=(.9, .8),pos_hint ={'center_x': .5,'center_y': 1})
         self.root.add_widget(drone)
         
         locationlistview = Label(text= location_list(),size_hint=(1.01, None))
@@ -490,8 +492,9 @@ class FlightLayer(MapLayer):
     def remove_flight_popup(self):
         def buttonPressRemoveFlight(selection):
             global flights
-            del flights[int(selection)-1]
-            SaveFlightList(flights)
+            if int(selection) <= len(flights):
+                del flights[int(selection)-1]
+                SaveFlightList(flights)
         
         self.root = BoxLayout(orientation='vertical',spacing=15)
         
