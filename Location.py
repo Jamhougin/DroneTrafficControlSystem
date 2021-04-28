@@ -1,5 +1,16 @@
 # -*- coding: UTF-8 -*-
 
+'''
+Name:        James Hall
+Student No.: C00007006
+Institute:   Institute of Technology Carlow
+Project:     Drone Traffic Control System     
+Date:        April 2021 
+License:     GNU Affero General Public License v3.0
+
+Location class
+'''
+
 class Location():
 
     def __init__(self, name, latitude, longitude, altitude):

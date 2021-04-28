@@ -1,3 +1,15 @@
+# -*- coding: UTF-8 -*-
+
+'''
+Name:        James Hall
+Student No.: C00007006
+Institute:   Institute of Technology Carlow
+Project:     Drone Traffic Control System     
+Date:        April 2021 
+License:     GNU Affero General Public License v3.0
+
+Abstract Drone class
+'''
 from abc import ABC, abstractmethod
 
 class AbstractDrone(ABC):

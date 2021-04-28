@@ -1,6 +1,17 @@
 import re
 from kivy.uix.textinput import TextInput
 
+'''
+Name:        James Hall
+Student No.: C00007006
+Institute:   Institute of Technology Carlow
+Project:     Drone Traffic Control System     
+Date:        April 2021 
+License:     GNU Affero General Public License v3.0
+
+FloatInput class
+'''
+
 #Class designed to ensure only floats can be used for text input for lat/long values.
 #
 #Source: https://kivy.org/doc/stable/api_kivy.uix.textinput.html

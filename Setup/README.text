@@ -1,0 +1,24 @@
+Required OS Ubuntu 18.04
+
+The user may firstly open up a terminal in the same folder as this README.
+
+If the setup.sh has been opened in Windows previously the user may need to 
+remove some hidden Dos commands using:
+
+"sudo apt install dos2unix"
+"dos2unix setup.sh"
+
+In the terminal the setup.sh file needs to be given execution permission with:
+
+"chmod 777 setup.sh"
+
+Next run the setup.sh using:
+
+"source ./setup.sh"
+
+With the virtual environment set up the Program may be run from the terminal
+using:
+
+"python3 MapViewApp.py"
+
+

@@ -1,6 +1,15 @@
-	
-
 # -*- coding: UTF-8 -*-
+
+'''
+Name:        James Hall
+Student No.: C00007006
+Institute:   Institute of Technology Carlow
+Project:     Drone Traffic Control System     
+Date:        April 2021 
+License:     GNU Affero General Public License v3.0
+
+Bebop Drone class
+'''
 
 import olympe
 from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, moveTo, Landing
