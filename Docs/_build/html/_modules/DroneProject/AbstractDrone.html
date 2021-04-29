@@ -1,0 +1,261 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DroneProject.AbstractDrone &#8212; Automated Drone Traffic Control System 1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for DroneProject.AbstractDrone</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+
+<span class="c1">#Name:        James Hall</span>
+<span class="c1">#Student No.: C00007006</span>
+<span class="c1">#Institute:   Institute of Technology Carlow</span>
+<span class="c1">#Project:     Drone Traffic Control System     </span>
+<span class="c1">#Date:        April 2021 </span>
+<span class="c1">#License:     GNU Affero General Public License v3.0</span>
+
+<span class="c1">#Abstract Drone class</span>
+
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractDrone"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone">[docs]</a><span class="k">class</span> <span class="nc">AbstractDrone</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract class for drone types</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">home_latitude</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">home_longtitude</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">current_latitude</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">current_longtitude</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">destination_latitude</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">destination_longtitude</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">altitude</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">battery</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">flying_state</span> <span class="o">=</span> <span class="s2">&quot;Grounded&quot;</span>
+    <span class="n">drone_id</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">drone_type</span> <span class="o">=</span> <span class="s2">&quot;virtual&quot;</span>
+    <span class="n">heading</span> <span class="o">=</span> <span class="mi">0</span>
+    
+<div class="viewcode-block" id="AbstractDrone.takeoff"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.takeoff">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">takeoff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.hover"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.hover">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">hover</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.moveto"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.moveto">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">moveto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.changealtitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.changealtitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">changealtitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.land"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.land">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">land</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getgpsposition"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getgpsposition">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getgpsposition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setdronestate"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setdronestate">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">setdronestate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getdronestate"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getdronestate">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getdronestate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setbatteryinflight"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setbatteryinflight">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">setbatteryinflight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setbatterytotal"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setbatterytotal">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">setbatterytotal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percent</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setbatterychange"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setbatterychange">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">setbatterychange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percent</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getbattery"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getbattery">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getbattery</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.sethomelatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.sethomelatitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">sethomelatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lat</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.gethomelatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.gethomelatitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">gethomelatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setdestinationlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setdestinationlatitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">setdestinationlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lat</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getdestinationlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getdestinationlatitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getdestinationlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setdestinationlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setdestinationlongitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">setdestinationlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lon</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getdestinationlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getdestinationlongitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getdestinationlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setcurrentlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setcurrentlatitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">setcurrentlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lat</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getcurrentlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getcurrentlatitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getcurrentlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setcurrentlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setcurrentlongitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">setcurrentlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lon</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getcurrentlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getcurrentlongitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getcurrentlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getdistancetodestination"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getdistancetodestination">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getdistancetodestination</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getdistancetoposition"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getdistancetoposition">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getdistancetoposition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.createvector"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.createvector">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">createvector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getvectorlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getvectorlatitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getvectorlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getvectorlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getvectorlongitude">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getvectorlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.updatecurrentposition"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.updatecurrentposition">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">updatecurrentposition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getbearing"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getbearing">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">getbearing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">startlat</span><span class="p">,</span> <span class="n">startlong</span><span class="p">,</span> <span class="n">destlat</span><span class="p">,</span> <span class="n">destlong</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.getdronetype"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.getdronetype">[docs]</a>    <span class="nd">@abstractmethod</span>        
+    <span class="k">def</span> <span class="nf">getdronetype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractDrone.setdronetype"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.AbstractDrone.AbstractDrone.setdronetype">[docs]</a>    <span class="nd">@abstractmethod</span>        
+    <span class="k">def</span> <span class="nf">setdronetype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dronetype</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Automated Drone Traffic Control System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">DroneProject</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, James Hall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

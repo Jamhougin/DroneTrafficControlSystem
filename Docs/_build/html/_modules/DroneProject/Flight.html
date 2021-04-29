@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DroneProject.Flight &#8212; Automated Drone Traffic Control System 1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for DroneProject.Flight</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+
+<span class="c1">#Name:        James Hall</span>
+<span class="c1">#Student No.: C00007006</span>
+<span class="c1">#Institute:   Institute of Technology Carlow</span>
+<span class="c1">#Project:     Drone Traffic Control System     </span>
+<span class="c1">#Date:        April 2021 </span>
+<span class="c1">#License:     GNU Affero General Public License v3.0</span>
+
+<span class="c1">#Flight class</span>
+
+
+<div class="viewcode-block" id="Flight"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight">[docs]</a><span class="k">class</span> <span class="nc">Flight</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for flight object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">startlatitude</span><span class="p">,</span> <span class="n">startlongitude</span><span class="p">,</span> <span class="n">destlatitude</span><span class="p">,</span> <span class="n">destlongitude</span><span class="p">,</span> <span class="n">drone</span><span class="p">,</span> <span class="n">flightcomplete</span><span class="p">,</span> <span class="n">flightabort</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_id</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_latitude</span> <span class="o">=</span> <span class="n">startlatitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_longitude</span> <span class="o">=</span> <span class="n">startlongitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span> <span class="o">=</span> <span class="n">destlatitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span> <span class="o">=</span> <span class="n">destlongitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_drone</span> <span class="o">=</span> <span class="n">drone</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_complete</span> <span class="o">=</span> <span class="n">flightcomplete</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_abort</span> <span class="o">=</span> <span class="n">flightabort</span>
+        
+<div class="viewcode-block" id="Flight.setflightid"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.setflightid">[docs]</a>    <span class="k">def</span> <span class="nf">setflightid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_id</span> <span class="o">=</span> <span class="n">name</span></div>
+        
+<div class="viewcode-block" id="Flight.getflightid"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.getflightid">[docs]</a>    <span class="k">def</span> <span class="nf">getflightid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flight_id</span>
+        <span class="k">return</span> <span class="n">name</span></div>
+        
+<div class="viewcode-block" id="Flight.setstartlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.setstartlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">setstartlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">startlatitude</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_latitude</span> <span class="o">=</span> <span class="n">startlatitude</span></div>
+        
+<div class="viewcode-block" id="Flight.getstartlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.getstartlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">getstartlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">startlatitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_latitude</span>
+        <span class="k">return</span> <span class="n">startlatitude</span></div>
+        
+<div class="viewcode-block" id="Flight.setstartlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.setstartlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">setstartlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">startlongitude</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_longitude</span> <span class="o">=</span> <span class="n">startlongitude</span></div>
+        
+<div class="viewcode-block" id="Flight.getstartlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.getstartlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">getstartlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">startlongitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_longitude</span>
+        <span class="k">return</span> <span class="n">startlongitude</span></div>
+        
+<div class="viewcode-block" id="Flight.setdestinationlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.setdestinationlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">setdestinationlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destlatitude</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span> <span class="o">=</span> <span class="n">destlatitude</span></div>
+        
+<div class="viewcode-block" id="Flight.getdestinationlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.getdestinationlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">getdestinationlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">destlatitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span>
+        <span class="k">return</span> <span class="n">destlatitude</span></div>
+        
+<div class="viewcode-block" id="Flight.setdestinationlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.setdestinationlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">setdestinationlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destlongitude</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span> <span class="o">=</span> <span class="n">destlongitude</span></div>
+        
+<div class="viewcode-block" id="Flight.getdestinationlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.getdestinationlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">getdestinationlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">destlongitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span>
+        <span class="k">return</span> <span class="n">destlongitude</span></div>
+        
+<div class="viewcode-block" id="Flight.setdrone"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.setdrone">[docs]</a>    <span class="k">def</span> <span class="nf">setdrone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_drone</span> <span class="o">=</span> <span class="n">drone</span></div>
+        
+<div class="viewcode-block" id="Flight.getdrone"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.getdrone">[docs]</a>    <span class="k">def</span> <span class="nf">getdrone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">drone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flight_drone</span>
+        <span class="k">return</span> <span class="n">drone</span></div>
+        
+<div class="viewcode-block" id="Flight.setflightcomplete"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.setflightcomplete">[docs]</a>    <span class="k">def</span> <span class="nf">setflightcomplete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flightcomplete</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_complete</span> <span class="o">=</span> <span class="n">flightcomplete</span></div>
+        
+<div class="viewcode-block" id="Flight.getflightcomplete"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.getflightcomplete">[docs]</a>    <span class="k">def</span> <span class="nf">getflightcomplete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">flightcomplete</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flight_complete</span>
+        <span class="k">return</span> <span class="n">flightcomplete</span></div>
+        
+<div class="viewcode-block" id="Flight.setflightabort"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.setflightabort">[docs]</a>    <span class="k">def</span> <span class="nf">setflightabort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flightabort</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_abort</span> <span class="o">=</span> <span class="n">flightabort</span></div>
+        
+<div class="viewcode-block" id="Flight.getflightabort"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.Flight.Flight.getflightabort">[docs]</a>    <span class="k">def</span> <span class="nf">getflightabort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">flightabort</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flight_abort</span>
+        <span class="k">return</span> <span class="n">flightabort</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Automated Drone Traffic Control System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">DroneProject</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, James Hall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

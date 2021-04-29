@@ -1,0 +1,316 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DroneProject.VirtualDrone &#8212; Automated Drone Traffic Control System 1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for DroneProject.VirtualDrone</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+
+<span class="c1">#Name:        James Hall</span>
+<span class="c1">#Student No.: C00007006</span>
+<span class="c1">#Institute:   Institute of Technology Carlow</span>
+<span class="c1">#Project:     Drone Traffic Control System     </span>
+<span class="c1">#Date:        April 2021 </span>
+<span class="c1">#License:     GNU Affero General Public License v3.0</span>
+
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">geographiclib.geodesic</span> <span class="kn">import</span> <span class="n">Geodesic</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">from</span> <span class="nn">AbstractDrone</span> <span class="kn">import</span> <span class="n">AbstractDrone</span>
+
+
+<span class="n">battery_drain</span> <span class="o">=</span> <span class="o">.</span><span class="mi">055</span>
+
+<div class="viewcode-block" id="VirtualDrone"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone">[docs]</a><span class="k">class</span> <span class="nc">VirtualDrone</span><span class="p">(</span><span class="n">AbstractDrone</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;   </span>
+<span class="sd">    Virtual Drone class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">,</span> <span class="n">dronetype</span><span class="p">,</span> <span class="n">home_latitude</span><span class="p">,</span> <span class="n">home_longitude</span><span class="p">,</span> <span class="n">destination_latitude</span><span class="p">,</span> <span class="n">destination_longitude</span><span class="p">,</span> <span class="n">altitude</span><span class="p">,</span> <span class="n">battery</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">flying_state</span><span class="p">,</span> <span class="n">heading</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">home_latitude</span> <span class="o">=</span> <span class="n">home_latitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">home_longitude</span> <span class="o">=</span> <span class="n">home_longitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span> <span class="o">=</span> <span class="n">home_latitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span> <span class="o">=</span> <span class="n">home_longitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span> <span class="o">=</span> <span class="n">destination_latitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span> <span class="o">=</span> <span class="n">destination_longitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altitude</span> <span class="o">=</span> <span class="n">altitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">battery</span> <span class="o">=</span> <span class="n">battery</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="n">speed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flying_state</span> <span class="o">=</span> <span class="n">flying_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drone_id</span> <span class="o">=</span> <span class="n">drone_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drone_type</span> <span class="o">=</span> <span class="n">dronetype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heading</span> <span class="o">=</span> <span class="n">heading</span>
+
+<div class="viewcode-block" id="VirtualDrone.takeoff"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.takeoff">[docs]</a>    <span class="k">def</span> <span class="nf">takeoff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altitude</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flying_state</span> <span class="o">=</span> <span class="s2">&quot;Hovering&quot;</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.hover"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.hover">[docs]</a>    <span class="k">def</span> <span class="nf">hover</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flying_state</span> <span class="o">=</span> <span class="s2">&quot;Hovering&quot;</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.moveto"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.moveto">[docs]</a>    <span class="k">def</span> <span class="nf">moveto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">altitude</span><span class="p">,</span> <span class="n">spe</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altitude</span> <span class="o">=</span> <span class="n">altitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span> <span class="o">=</span> <span class="n">latitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span> <span class="o">=</span> <span class="n">longitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="n">spe</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createvector</span><span class="p">()</span><span class="c1">#better name?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updatecurrentposition</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flying_state</span> <span class="o">=</span> <span class="s2">&quot;MovingTo&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setbatteryinflight</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.changealtitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.changealtitude">[docs]</a>    <span class="k">def</span> <span class="nf">changealtitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alt</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altitude</span> <span class="o">=</span> <span class="n">alt</span></div>
+        <span class="c1">#self.flying_state = &quot;Changing Altitude&quot;</span>
+
+<div class="viewcode-block" id="VirtualDrone.land"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.land">[docs]</a>    <span class="k">def</span> <span class="nf">land</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altitude</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flying_state</span> <span class="o">=</span> <span class="s2">&quot;Grounded&quot;</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getgpsposition"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getgpsposition">[docs]</a>    <span class="k">def</span> <span class="nf">getgpsposition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drone_id</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="p">)</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span><span class="p">)</span>
+        <span class="n">alt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">altitude</span>
+        
+        <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getaltitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getaltitude">[docs]</a>    <span class="k">def</span> <span class="nf">getaltitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">altitude</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.setdronestate"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setdronestate">[docs]</a>    <span class="k">def</span> <span class="nf">setdronestate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flying_state</span> <span class="o">=</span> <span class="n">state</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getdronestate"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getdronestate">[docs]</a>    <span class="k">def</span> <span class="nf">getdronestate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">flystate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flying_state</span>
+        
+        <span class="k">return</span> <span class="n">flystate</span></div>
+
+    <span class="c1">#Set/Get Battery</span>
+<div class="viewcode-block" id="VirtualDrone.setbatteryinflight"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setbatteryinflight">[docs]</a>    <span class="k">def</span> <span class="nf">setbatteryinflight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">battery_drain</span>
+        <span class="c1"># .055 is estimated drain on battery in flight per second as a %</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">battery</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">battery</span> <span class="o">-</span> <span class="n">battery_drain</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.setbatterytotal"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setbatterytotal">[docs]</a>    <span class="k">def</span> <span class="nf">setbatterytotal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percent</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">battery</span> <span class="o">=</span> <span class="n">percent</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.setbatterychange"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setbatterychange">[docs]</a>    <span class="k">def</span> <span class="nf">setbatterychange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percent</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">battery</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">battery</span> <span class="o">-</span> <span class="n">percent</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getbattery"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getbattery">[docs]</a>    <span class="k">def</span> <span class="nf">getbattery</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">battery</span></div>
+
+    <span class="c1">#Set/Get home lat and lon</span>
+<div class="viewcode-block" id="VirtualDrone.sethomelatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.sethomelatitude">[docs]</a>    <span class="k">def</span> <span class="nf">sethomelatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lat</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">home_latitude</span> <span class="o">=</span> <span class="n">lat</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.gethomelatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.gethomelatitude">[docs]</a>    <span class="k">def</span> <span class="nf">gethomelatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">home_latitude</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.sethomelongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.sethomelongitude">[docs]</a>    <span class="k">def</span> <span class="nf">sethomelongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lon</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">home_longitude</span> <span class="o">=</span> <span class="n">lon</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.gethomelongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.gethomelongitude">[docs]</a>    <span class="k">def</span> <span class="nf">gethomelongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">home_longitude</span></div>
+
+    <span class="c1">#Set/Get destination lat and lon</span>
+<div class="viewcode-block" id="VirtualDrone.setdestinationlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setdestinationlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">setdestinationlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lat</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span> <span class="o">=</span> <span class="n">lat</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getdestinationlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getdestinationlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">getdestinationlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.setdestinationlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setdestinationlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">setdestinationlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lon</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span> <span class="o">=</span> <span class="n">lon</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getdestinationlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getdestinationlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">getdestinationlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span></div>
+
+    <span class="c1">#Set/Get current lat and lon</span>
+<div class="viewcode-block" id="VirtualDrone.setcurrentlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setcurrentlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">setcurrentlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lat</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span> <span class="o">=</span> <span class="n">lat</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getcurrentlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getcurrentlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">getcurrentlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.setcurrentlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setcurrentlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">setcurrentlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lon</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span> <span class="o">=</span> <span class="n">lon</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getcurrentlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getcurrentlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">getcurrentlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getdistancetodestination"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getdistancetodestination">[docs]</a>    <span class="k">def</span> <span class="nf">getdistancetodestination</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#Get travel distance from point to point</span>
+        <span class="c1">#Formula adopted from top answer and source of answer:</span>
+        <span class="c1">#https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula</span>
+        <span class="c1">#http://www.movable-type.co.uk/scripts/latlong.html</span>
+        
+        <span class="n">radius</span> <span class="o">=</span> <span class="mi">6371</span> <span class="c1">#Radius in km of Earth</span>
+
+        <span class="n">deg_latitude</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="p">))</span>
+        <span class="n">deg_longitude</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span><span class="p">))</span>
+
+        <span class="c1">#a = Square of half the chord length between two points</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">deg_latitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">deg_latitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="p">))</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span><span class="p">))</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">deg_longitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">deg_longitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="c1">#c = Angular distance in radians</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">a</span><span class="p">))</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">c</span>
+
+        <span class="k">return</span> <span class="n">d</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getdistancetoposition"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getdistancetoposition">[docs]</a>    <span class="k">def</span> <span class="nf">getdistancetoposition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">poslat</span><span class="p">,</span><span class="n">poslon</span><span class="p">):</span>
+        <span class="c1">#Get travel distance from point to point</span>
+        <span class="c1">#Formula adopted from top answer and source of answer:</span>
+        <span class="c1">#https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula</span>
+        <span class="c1">#http://www.movable-type.co.uk/scripts/latlong.html</span>
+        
+        <span class="n">radius</span> <span class="o">=</span> <span class="mi">6371</span> <span class="c1">#Average Radius in km of Earth</span>
+
+        <span class="n">deg_latitude</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">poslat</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="p">))</span>
+        <span class="n">deg_longitude</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">poslon</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span><span class="p">))</span>
+
+        <span class="c1">#a = Square of half the chord length between two points</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">deg_latitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">deg_latitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="p">)))</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span><span class="p">)))</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">deg_longitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">deg_longitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="c1">#c = Angular distance in radians</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">a</span><span class="p">))</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">c</span>
+
+        <span class="k">return</span> <span class="n">d</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.createvector"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.createvector">[docs]</a>    <span class="k">def</span> <span class="nf">createvector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vectorlat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span><span class="p">)</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vectorlon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span><span class="p">)</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vectorlat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vectorlon</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getvectorlatitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getvectorlatitude">[docs]</a>    <span class="k">def</span> <span class="nf">getvectorlatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">vectorlat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_latitude</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">home_latitude</span>
+
+        <span class="k">return</span> <span class="n">vectorlat</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.getvectorlongitude"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getvectorlongitude">[docs]</a>    <span class="k">def</span> <span class="nf">getvectorlongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">vectorlon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_longitude</span> <span class="p">)</span><span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">home_longitude</span>
+
+        <span class="k">return</span> <span class="n">vectorlon</span></div>
+
+<div class="viewcode-block" id="VirtualDrone.updatecurrentposition"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.updatecurrentposition">[docs]</a>    <span class="k">def</span> <span class="nf">updatecurrentposition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">direction_length</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getvectorlatitude</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getvectorlongitude</span><span class="p">(),</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">normalised_vector_lat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getvectorlatitude</span><span class="p">()</span> <span class="o">/</span> <span class="n">direction_length</span>
+        <span class="n">normalised_vector_lon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getvectorlongitude</span><span class="p">()</span> <span class="o">/</span> <span class="n">direction_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_latitude</span><span class="p">)</span><span class="o">+</span> <span class="p">(</span><span class="n">normalised_vector_lat</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span><span class="o">*</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span> <span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_longitude</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">normalised_vector_lon</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span><span class="o">*</span><span class="mi">1</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="VirtualDrone.getbearing"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getbearing">[docs]</a>    <span class="k">def</span> <span class="nf">getbearing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">startlat</span><span class="p">,</span> <span class="n">startlong</span><span class="p">,</span> <span class="n">destlat</span><span class="p">,</span> <span class="n">destlong</span><span class="p">):</span>
+        <span class="n">heading</span> <span class="o">=</span> <span class="n">Geodesic</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">Inverse</span><span class="p">(</span><span class="n">startlat</span><span class="p">,</span><span class="n">startlong</span><span class="p">,</span> <span class="n">destlat</span><span class="p">,</span> <span class="n">destlong</span><span class="p">)[</span><span class="s2">&quot;azi1&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">heading</span></div>
+        
+<div class="viewcode-block" id="VirtualDrone.getdronetype"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.getdronetype">[docs]</a>    <span class="k">def</span> <span class="nf">getdronetype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">drone_type</span></div>
+        
+<div class="viewcode-block" id="VirtualDrone.setdronetype"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.VirtualDrone.VirtualDrone.setdronetype">[docs]</a>    <span class="k">def</span> <span class="nf">setdronetype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dronetype</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drone_type</span> <span class="o">=</span> <span class="n">dronetype</span></div></div>
+
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Automated Drone Traffic Control System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">DroneProject</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, James Hall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

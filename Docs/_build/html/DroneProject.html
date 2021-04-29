@@ -1,0 +1,1109 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DroneProject package &#8212; Automated Drone Traffic Control System 1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DroneProject.database package" href="DroneProject.database.html" />
+    <link rel="prev" title="DroneProject" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="droneproject-package">
+<h1>DroneProject package<a class="headerlink" href="#droneproject-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DroneProject.database.html">DroneProject.database package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DroneProject.database.html#module-DroneProject.database">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-DroneProject.AbstractDrone">
+<span id="droneproject-abstractdrone-module"></span><h2>DroneProject.AbstractDrone module<a class="headerlink" href="#module-DroneProject.AbstractDrone" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="DroneProject.AbstractDrone.AbstractDrone">
+<em class="property">class </em><code class="descclassname">DroneProject.AbstractDrone.</code><code class="descname">AbstractDrone</code><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<p>Abstract class for drone types</p>
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.altitude">
+<code class="descname">altitude</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.altitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.battery">
+<code class="descname">battery</code><em class="property"> = 100</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.battery" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.changealtitude">
+<code class="descname">changealtitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.changealtitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.changealtitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.createvector">
+<code class="descname">createvector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.createvector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.createvector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.current_latitude">
+<code class="descname">current_latitude</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.current_latitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.current_longtitude">
+<code class="descname">current_longtitude</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.current_longtitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.destination_latitude">
+<code class="descname">destination_latitude</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.destination_latitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.destination_longtitude">
+<code class="descname">destination_longtitude</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.destination_longtitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.drone_id">
+<code class="descname">drone_id</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.drone_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.drone_type">
+<code class="descname">drone_type</code><em class="property"> = 'virtual'</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.drone_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.flying_state">
+<code class="descname">flying_state</code><em class="property"> = 'Grounded'</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.flying_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getbattery">
+<code class="descname">getbattery</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getbattery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getbattery" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getbearing">
+<code class="descname">getbearing</code><span class="sig-paren">(</span><em>startlat</em>, <em>startlong</em>, <em>destlat</em>, <em>destlong</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getbearing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getbearing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getcurrentlatitude">
+<code class="descname">getcurrentlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getcurrentlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getcurrentlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getcurrentlongitude">
+<code class="descname">getcurrentlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getcurrentlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getcurrentlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getdestinationlatitude">
+<code class="descname">getdestinationlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getdestinationlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getdestinationlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getdestinationlongitude">
+<code class="descname">getdestinationlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getdestinationlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getdestinationlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getdistancetodestination">
+<code class="descname">getdistancetodestination</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getdistancetodestination"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getdistancetodestination" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getdistancetoposition">
+<code class="descname">getdistancetoposition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getdistancetoposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getdistancetoposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getdronestate">
+<code class="descname">getdronestate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getdronestate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getdronestate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getdronetype">
+<code class="descname">getdronetype</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getdronetype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getdronetype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getgpsposition">
+<code class="descname">getgpsposition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getgpsposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getgpsposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.gethomelatitude">
+<code class="descname">gethomelatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.gethomelatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.gethomelatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getvectorlatitude">
+<code class="descname">getvectorlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getvectorlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getvectorlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.getvectorlongitude">
+<code class="descname">getvectorlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.getvectorlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.getvectorlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.heading">
+<code class="descname">heading</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.heading" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.home_latitude">
+<code class="descname">home_latitude</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.home_latitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.home_longtitude">
+<code class="descname">home_longtitude</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.home_longtitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.hover">
+<code class="descname">hover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.hover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.hover" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.land">
+<code class="descname">land</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.land"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.land" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.moveto">
+<code class="descname">moveto</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.moveto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.moveto" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setbatterychange">
+<code class="descname">setbatterychange</code><span class="sig-paren">(</span><em>percent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setbatterychange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setbatterychange" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setbatteryinflight">
+<code class="descname">setbatteryinflight</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setbatteryinflight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setbatteryinflight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setbatterytotal">
+<code class="descname">setbatterytotal</code><span class="sig-paren">(</span><em>percent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setbatterytotal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setbatterytotal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setcurrentlatitude">
+<code class="descname">setcurrentlatitude</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setcurrentlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setcurrentlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setcurrentlongitude">
+<code class="descname">setcurrentlongitude</code><span class="sig-paren">(</span><em>lon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setcurrentlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setcurrentlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setdestinationlatitude">
+<code class="descname">setdestinationlatitude</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setdestinationlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setdestinationlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setdestinationlongitude">
+<code class="descname">setdestinationlongitude</code><span class="sig-paren">(</span><em>lon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setdestinationlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setdestinationlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setdronestate">
+<code class="descname">setdronestate</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setdronestate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setdronestate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.setdronetype">
+<code class="descname">setdronetype</code><span class="sig-paren">(</span><em>dronetype</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.setdronetype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.setdronetype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.sethomelatitude">
+<code class="descname">sethomelatitude</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.sethomelatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.sethomelatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.speed">
+<code class="descname">speed</code><em class="property"> = 0</em><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.speed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.takeoff">
+<code class="descname">takeoff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.takeoff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.takeoff" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.AbstractDrone.AbstractDrone.updatecurrentposition">
+<code class="descname">updatecurrentposition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/AbstractDrone.html#AbstractDrone.updatecurrentposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.AbstractDrone.AbstractDrone.updatecurrentposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject.BebopDrone">
+<span id="droneproject-bebopdrone-module"></span><h2>DroneProject.BebopDrone module<a class="headerlink" href="#module-DroneProject.BebopDrone" title="Permalink to this headline">¶</a></h2>
+<p>Bebop Drone class</p>
+<dl class="function">
+<dt id="DroneProject.BebopDrone.changealtitude">
+<code class="descclassname">DroneProject.BebopDrone.</code><code class="descname">changealtitude</code><span class="sig-paren">(</span><em>drone</em>, <em>alt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/BebopDrone.html#changealtitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.BebopDrone.changealtitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.BebopDrone.getgpsposition">
+<code class="descclassname">DroneProject.BebopDrone.</code><code class="descname">getgpsposition</code><span class="sig-paren">(</span><em>drone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/BebopDrone.html#getgpsposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.BebopDrone.getgpsposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.BebopDrone.land">
+<code class="descclassname">DroneProject.BebopDrone.</code><code class="descname">land</code><span class="sig-paren">(</span><em>drone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/BebopDrone.html#land"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.BebopDrone.land" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.BebopDrone.moveto">
+<code class="descclassname">DroneProject.BebopDrone.</code><code class="descname">moveto</code><span class="sig-paren">(</span><em>drone</em>, <em>longt</em>, <em>lati</em>, <em>alti</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/BebopDrone.html#moveto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.BebopDrone.moveto" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.BebopDrone.takeoff">
+<code class="descclassname">DroneProject.BebopDrone.</code><code class="descname">takeoff</code><span class="sig-paren">(</span><em>drone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/BebopDrone.html#takeoff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.BebopDrone.takeoff" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject.DroneController">
+<span id="droneproject-dronecontroller-module"></span><h2>DroneProject.DroneController module<a class="headerlink" href="#module-DroneProject.DroneController" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="drone-controller">
+<h3>Drone Controller<a class="headerlink" href="#drone-controller" title="Permalink to this headline">¶</a></h3>
+<p>Contains all drone control algorithms</p>
+<dl class="function">
+<dt id="DroneProject.DroneController.ChangeAltitude">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">ChangeAltitude</code><span class="sig-paren">(</span><em>drone</em>, <em>newalt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#ChangeAltitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.ChangeAltitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.CollisionDetection">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">CollisionDetection</code><span class="sig-paren">(</span><em>drone</em>, <em>otherdrone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#CollisionDetection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.CollisionDetection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.Hover">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">Hover</code><span class="sig-paren">(</span><em>Drone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#Hover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.Hover" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.LandDrone">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">LandDrone</code><span class="sig-paren">(</span><em>Drone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#LandDrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.LandDrone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.MoveDrone">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">MoveDrone</code><span class="sig-paren">(</span><em>drone</em>, <em>flight</em>, <em>dronelist</em>, <em>lat</em>, <em>lon</em>, <em>locations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#MoveDrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.MoveDrone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.TakeOffFlyLand">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">TakeOffFlyLand</code><span class="sig-paren">(</span><em>drone</em>, <em>flight</em>, <em>dronelist</em>, <em>locationlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#TakeOffFlyLand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.TakeOffFlyLand" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.findnearestlocation">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">findnearestlocation</code><span class="sig-paren">(</span><em>drone</em>, <em>locations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#findnearestlocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.findnearestlocation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.getdistancetodestination">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">getdistancetodestination</code><span class="sig-paren">(</span><em>drone</em>, <em>flight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#getdistancetodestination"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.getdistancetodestination" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.getdistancetodrone">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">getdistancetodrone</code><span class="sig-paren">(</span><em>drone</em>, <em>otherdrone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#getdistancetodrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.getdistancetodrone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.DroneController.getdistancetoposition">
+<code class="descclassname">DroneProject.DroneController.</code><code class="descname">getdistancetoposition</code><span class="sig-paren">(</span><em>drone</em>, <em>poslat</em>, <em>poslon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#getdistancetoposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.getdistancetoposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-DroneProject.Flight">
+<span id="droneproject-flight-module"></span><h2>DroneProject.Flight module<a class="headerlink" href="#module-DroneProject.Flight" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="DroneProject.Flight.Flight">
+<em class="property">class </em><code class="descclassname">DroneProject.Flight.</code><code class="descname">Flight</code><span class="sig-paren">(</span><em>name</em>, <em>startlatitude</em>, <em>startlongitude</em>, <em>destlatitude</em>, <em>destlongitude</em>, <em>drone</em>, <em>flightcomplete</em>, <em>flightabort</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class for flight object</p>
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.getdestinationlatitude">
+<code class="descname">getdestinationlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.getdestinationlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.getdestinationlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.getdestinationlongitude">
+<code class="descname">getdestinationlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.getdestinationlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.getdestinationlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.getdrone">
+<code class="descname">getdrone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.getdrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.getdrone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.getflightabort">
+<code class="descname">getflightabort</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.getflightabort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.getflightabort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.getflightcomplete">
+<code class="descname">getflightcomplete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.getflightcomplete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.getflightcomplete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.getflightid">
+<code class="descname">getflightid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.getflightid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.getflightid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.getstartlatitude">
+<code class="descname">getstartlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.getstartlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.getstartlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.getstartlongitude">
+<code class="descname">getstartlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.getstartlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.getstartlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.setdestinationlatitude">
+<code class="descname">setdestinationlatitude</code><span class="sig-paren">(</span><em>destlatitude</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.setdestinationlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.setdestinationlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.setdestinationlongitude">
+<code class="descname">setdestinationlongitude</code><span class="sig-paren">(</span><em>destlongitude</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.setdestinationlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.setdestinationlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.setdrone">
+<code class="descname">setdrone</code><span class="sig-paren">(</span><em>drone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.setdrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.setdrone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.setflightabort">
+<code class="descname">setflightabort</code><span class="sig-paren">(</span><em>flightabort</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.setflightabort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.setflightabort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.setflightcomplete">
+<code class="descname">setflightcomplete</code><span class="sig-paren">(</span><em>flightcomplete</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.setflightcomplete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.setflightcomplete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.setflightid">
+<code class="descname">setflightid</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.setflightid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.setflightid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.setstartlatitude">
+<code class="descname">setstartlatitude</code><span class="sig-paren">(</span><em>startlatitude</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.setstartlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.setstartlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Flight.Flight.setstartlongitude">
+<code class="descname">setstartlongitude</code><span class="sig-paren">(</span><em>startlongitude</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Flight.html#Flight.setstartlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Flight.Flight.setstartlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject.FloatInput">
+<span id="droneproject-floatinput-module"></span><h2>DroneProject.FloatInput module<a class="headerlink" href="#module-DroneProject.FloatInput" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="DroneProject.FloatInput.FloatInput">
+<em class="property">class </em><code class="descclassname">DroneProject.FloatInput.</code><code class="descname">FloatInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/FloatInput.html#FloatInput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.FloatInput.FloatInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockObject</span></code></p>
+<p>Class designed to ensure only floats can be used for text input for lat/long values.</p>
+<p>Source: <a class="reference external" href="https://kivy.org/doc/stable/api_kivy.uix.textinput.html">https://kivy.org/doc/stable/api_kivy.uix.textinput.html</a></p>
+<dl class="method">
+<dt id="DroneProject.FloatInput.FloatInput.insert_text">
+<code class="descname">insert_text</code><span class="sig-paren">(</span><em>substring</em>, <em>from_undo=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/FloatInput.html#FloatInput.insert_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.FloatInput.FloatInput.insert_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.FloatInput.FloatInput.pat">
+<code class="descname">pat</code><em class="property"> = re.compile('[^-|0-9]')</em><a class="headerlink" href="#DroneProject.FloatInput.FloatInput.pat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject.Location">
+<span id="droneproject-location-module"></span><h2>DroneProject.Location module<a class="headerlink" href="#module-DroneProject.Location" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="DroneProject.Location.Location">
+<em class="property">class </em><code class="descclassname">DroneProject.Location.</code><code class="descname">Location</code><span class="sig-paren">(</span><em>name</em>, <em>latitude</em>, <em>longitude</em>, <em>altitude</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class for location object.</p>
+<dl class="method">
+<dt id="DroneProject.Location.Location.getlocationaltitude">
+<code class="descname">getlocationaltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location.getlocationaltitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location.getlocationaltitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Location.Location.getlocationlatitude">
+<code class="descname">getlocationlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location.getlocationlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location.getlocationlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Location.Location.getlocationlongitude">
+<code class="descname">getlocationlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location.getlocationlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location.getlocationlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Location.Location.getlocationname">
+<code class="descname">getlocationname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location.getlocationname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location.getlocationname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Location.Location.setlocationaltitude">
+<code class="descname">setlocationaltitude</code><span class="sig-paren">(</span><em>altitude</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location.setlocationaltitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location.setlocationaltitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Location.Location.setlocationlatitude">
+<code class="descname">setlocationlatitude</code><span class="sig-paren">(</span><em>latitude</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location.setlocationlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location.setlocationlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Location.Location.setlocationlongitude">
+<code class="descname">setlocationlongitude</code><span class="sig-paren">(</span><em>longitude</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location.setlocationlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location.setlocationlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.Location.Location.setlocationname">
+<code class="descname">setlocationname</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/Location.html#Location.setlocationname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.Location.Location.setlocationname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject.MainMenu2">
+<span id="droneproject-mainmenu2-module"></span><h2>DroneProject.MainMenu2 module<a class="headerlink" href="#module-DroneProject.MainMenu2" title="Permalink to this headline">¶</a></h2>
+<p>Original command line script #deprecated</p>
+<dl class="function">
+<dt id="DroneProject.MainMenu2.BeginFlight">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">BeginFlight</code><span class="sig-paren">(</span><em>flightlist</em>, <em>locationlist</em>, <em>dronelist</em>, <em>threads</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#BeginFlight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.BeginFlight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.CreateDrone">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">CreateDrone</code><span class="sig-paren">(</span><em>dronelist</em>, <em>locationlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#CreateDrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.CreateDrone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.CreateFlight">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">CreateFlight</code><span class="sig-paren">(</span><em>flightlist</em>, <em>locationlist</em>, <em>dronelist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#CreateFlight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.CreateFlight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.CreateLocation">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">CreateLocation</code><span class="sig-paren">(</span><em>locationlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#CreateLocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.CreateLocation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.MainMenu">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">MainMenu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#MainMenu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.MainMenu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.RemoveDrone">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">RemoveDrone</code><span class="sig-paren">(</span><em>dronelist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#RemoveDrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.RemoveDrone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.RemoveFlight">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">RemoveFlight</code><span class="sig-paren">(</span><em>flightlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#RemoveFlight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.RemoveFlight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.RemoveLocation">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">RemoveLocation</code><span class="sig-paren">(</span><em>locationlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#RemoveLocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.RemoveLocation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.ViewActiveDrones">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">ViewActiveDrones</code><span class="sig-paren">(</span><em>dronelist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#ViewActiveDrones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.ViewActiveDrones" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.ViewFlights">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">ViewFlights</code><span class="sig-paren">(</span><em>flightlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#ViewFlights"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.ViewFlights" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.ViewLocations">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">ViewLocations</code><span class="sig-paren">(</span><em>locationlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#ViewLocations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.ViewLocations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.MainMenu2.ViewSystemDrones">
+<code class="descclassname">DroneProject.MainMenu2.</code><code class="descname">ViewSystemDrones</code><span class="sig-paren">(</span><em>dronelist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MainMenu2.html#ViewSystemDrones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MainMenu2.ViewSystemDrones" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject.MapViewApp">
+<span id="droneproject-mapviewapp-module"></span><h2>DroneProject.MapViewApp module<a class="headerlink" href="#module-DroneProject.MapViewApp" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mapviewapp-py">
+<h3>MapViewApp.py<a class="headerlink" href="#mapviewapp-py" title="Permalink to this headline">¶</a></h3>
+<p>This is the core module for the ADTCS project</p>
+<dl class="class">
+<dt id="DroneProject.MapViewApp.DroneMarkerLayer">
+<em class="property">class </em><code class="descclassname">DroneProject.MapViewApp.</code><code class="descname">DroneMarkerLayer</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#DroneMarkerLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.DroneMarkerLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockObject</span></code></p>
+<p>Class related to CRUD drones operations</p>
+<dl class="method">
+<dt id="DroneProject.MapViewApp.DroneMarkerLayer.add_virtual_drone">
+<code class="descname">add_virtual_drone</code><span class="sig-paren">(</span><em>name</em>, <em>home</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#DroneMarkerLayer.add_virtual_drone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.DroneMarkerLayer.add_virtual_drone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.DroneMarkerLayer.add_virtual_drone_popup">
+<code class="descname">add_virtual_drone_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#DroneMarkerLayer.add_virtual_drone_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.DroneMarkerLayer.add_virtual_drone_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.DroneMarkerLayer.draw_drones">
+<code class="descname">draw_drones</code><span class="sig-paren">(</span><em>dronel</em>, <em>locationl</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#DroneMarkerLayer.draw_drones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.DroneMarkerLayer.draw_drones" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.MapViewApp.DroneMarkerLayer.droneview">
+<code class="descname">droneview</code><em class="property"> = None</em><a class="headerlink" href="#DroneProject.MapViewApp.DroneMarkerLayer.droneview" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.DroneMarkerLayer.insert_drone_image">
+<code class="descname">insert_drone_image</code><span class="sig-paren">(</span><em>drone</em>, <em>*largs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#DroneMarkerLayer.insert_drone_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.DroneMarkerLayer.insert_drone_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.DroneMarkerLayer.remove_drone_popup">
+<code class="descname">remove_drone_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#DroneMarkerLayer.remove_drone_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.DroneMarkerLayer.remove_drone_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="DroneProject.MapViewApp.FlightLayer">
+<em class="property">class </em><code class="descclassname">DroneProject.MapViewApp.</code><code class="descname">FlightLayer</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#FlightLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.FlightLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockObject</span></code></p>
+<dl class="method">
+<dt id="DroneProject.MapViewApp.FlightLayer.abort_flight_popup">
+<code class="descname">abort_flight_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#FlightLayer.abort_flight_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.FlightLayer.abort_flight_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.FlightLayer.create_flight_popup">
+<code class="descname">create_flight_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#FlightLayer.create_flight_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.FlightLayer.create_flight_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.FlightLayer.remove_flight_popup">
+<code class="descname">remove_flight_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#FlightLayer.remove_flight_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.FlightLayer.remove_flight_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.FlightLayer.start_flight_popup">
+<code class="descname">start_flight_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#FlightLayer.start_flight_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.FlightLayer.start_flight_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.FlightLayer.view_flights_popup">
+<code class="descname">view_flights_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#FlightLayer.view_flights_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.FlightLayer.view_flights_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="DroneProject.MapViewApp.LineMapLayer">
+<em class="property">class </em><code class="descclassname">DroneProject.MapViewApp.</code><code class="descname">LineMapLayer</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LineMapLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LineMapLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockObject</span></code></p>
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LineMapLayer.create_corridor_popup">
+<code class="descname">create_corridor_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LineMapLayer.create_corridor_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LineMapLayer.create_corridor_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LineMapLayer.draw_line">
+<code class="descname">draw_line</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LineMapLayer.draw_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LineMapLayer.draw_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LineMapLayer.get_x">
+<code class="descname">get_x</code><span class="sig-paren">(</span><em>lon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LineMapLayer.get_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LineMapLayer.get_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the x position on the map using this map source’s projection
+(0, 0) is located at the top left.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LineMapLayer.get_y">
+<code class="descname">get_y</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LineMapLayer.get_y"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LineMapLayer.get_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the y position on the map using this map source’s projection
+(0, 0) is located at the top left.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LineMapLayer.reposition">
+<code class="descname">reposition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LineMapLayer.reposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LineMapLayer.reposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer">
+<em class="property">class </em><code class="descclassname">DroneProject.MapViewApp.</code><code class="descname">LocationMarkerLayer</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LocationMarkerLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockObject</span></code></p>
+<p>Class for adding Location and Location Markers</p>
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer.add_point">
+<code class="descname">add_point</code><span class="sig-paren">(</span><em>lat</em>, <em>lon</em>, <em>alt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LocationMarkerLayer.add_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer.add_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer.add_point_popup">
+<code class="descname">add_point_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LocationMarkerLayer.add_point_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer.add_point_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer.draw_locations">
+<code class="descname">draw_locations</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LocationMarkerLayer.draw_locations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer.draw_locations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer.locationview">
+<code class="descname">locationview</code><em class="property"> = None</em><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer.locationview" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer.on_touch_down">
+<code class="descname">on_touch_down</code><span class="sig-paren">(</span><em>touch</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LocationMarkerLayer.on_touch_down"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer.on_touch_down" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer.remove_location_popup">
+<code class="descname">remove_location_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LocationMarkerLayer.remove_location_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer.remove_location_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer.set_loc_name">
+<code class="descname">set_loc_name</code><span class="sig-paren">(</span><em>nname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LocationMarkerLayer.set_loc_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer.set_loc_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.LocationMarkerLayer.view_locations_popup">
+<code class="descname">view_locations_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#LocationMarkerLayer.view_locations_popup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.LocationMarkerLayer.view_locations_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="DroneProject.MapViewApp.MapViewApp">
+<em class="property">class </em><code class="descclassname">DroneProject.MapViewApp.</code><code class="descname">MapViewApp</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#MapViewApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.MapViewApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockObject</span></code></p>
+<p>Main App Class</p>
+<dl class="method">
+<dt id="DroneProject.MapViewApp.MapViewApp.build">
+<code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#MapViewApp.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.MapViewApp.build" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="DroneProject.MapViewApp.MapViewApp.mapview">
+<code class="descname">mapview</code><em class="property"> = None</em><a class="headerlink" href="#DroneProject.MapViewApp.MapViewApp.mapview" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.MapViewApp.MapViewApp.post">
+<code class="descname">post</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/MapViewApp.html#MapViewApp.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.MapViewApp.MapViewApp.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-DroneProject.PrintLists">
+<span id="droneproject-printlists-module"></span><h2>DroneProject.PrintLists module<a class="headerlink" href="#module-DroneProject.PrintLists" title="Permalink to this headline">¶</a></h2>
+<p>Used to store functions for printing drone/location/flight lists</p>
+<dl class="function">
+<dt id="DroneProject.PrintLists.drone_list">
+<code class="descclassname">DroneProject.PrintLists.</code><code class="descname">drone_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/PrintLists.html#drone_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.PrintLists.drone_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.PrintLists.flight_list">
+<code class="descclassname">DroneProject.PrintLists.</code><code class="descname">flight_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/PrintLists.html#flight_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.PrintLists.flight_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.PrintLists.location_list">
+<code class="descclassname">DroneProject.PrintLists.</code><code class="descname">location_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/PrintLists.html#location_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.PrintLists.location_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject.VirtualDrone">
+<span id="droneproject-virtualdrone-module"></span><h2>DroneProject.VirtualDrone module<a class="headerlink" href="#module-DroneProject.VirtualDrone" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="DroneProject.VirtualDrone.VirtualDrone">
+<em class="property">class </em><code class="descclassname">DroneProject.VirtualDrone.</code><code class="descname">VirtualDrone</code><span class="sig-paren">(</span><em>drone_id</em>, <em>dronetype</em>, <em>home_latitude</em>, <em>home_longitude</em>, <em>destination_latitude</em>, <em>destination_longitude</em>, <em>altitude</em>, <em>battery</em>, <em>speed</em>, <em>flying_state</em>, <em>heading</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractDrone.AbstractDrone</span></code></p>
+<p>Virtual Drone class</p>
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.changealtitude">
+<code class="descname">changealtitude</code><span class="sig-paren">(</span><em>alt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.changealtitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.changealtitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.createvector">
+<code class="descname">createvector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.createvector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.createvector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getaltitude">
+<code class="descname">getaltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getaltitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getaltitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getbattery">
+<code class="descname">getbattery</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getbattery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getbattery" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getbearing">
+<code class="descname">getbearing</code><span class="sig-paren">(</span><em>startlat</em>, <em>startlong</em>, <em>destlat</em>, <em>destlong</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getbearing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getbearing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getcurrentlatitude">
+<code class="descname">getcurrentlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getcurrentlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getcurrentlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getcurrentlongitude">
+<code class="descname">getcurrentlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getcurrentlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getcurrentlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getdestinationlatitude">
+<code class="descname">getdestinationlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getdestinationlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getdestinationlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getdestinationlongitude">
+<code class="descname">getdestinationlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getdestinationlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getdestinationlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getdistancetodestination">
+<code class="descname">getdistancetodestination</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getdistancetodestination"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getdistancetodestination" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getdistancetoposition">
+<code class="descname">getdistancetoposition</code><span class="sig-paren">(</span><em>poslat</em>, <em>poslon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getdistancetoposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getdistancetoposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getdronestate">
+<code class="descname">getdronestate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getdronestate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getdronestate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getdronetype">
+<code class="descname">getdronetype</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getdronetype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getdronetype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getgpsposition">
+<code class="descname">getgpsposition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getgpsposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getgpsposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.gethomelatitude">
+<code class="descname">gethomelatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.gethomelatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.gethomelatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.gethomelongitude">
+<code class="descname">gethomelongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.gethomelongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.gethomelongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getvectorlatitude">
+<code class="descname">getvectorlatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getvectorlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getvectorlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.getvectorlongitude">
+<code class="descname">getvectorlongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.getvectorlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.getvectorlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.hover">
+<code class="descname">hover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.hover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.hover" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.land">
+<code class="descname">land</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.land"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.land" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.moveto">
+<code class="descname">moveto</code><span class="sig-paren">(</span><em>longitude</em>, <em>latitude</em>, <em>altitude</em>, <em>spe</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.moveto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.moveto" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setbatterychange">
+<code class="descname">setbatterychange</code><span class="sig-paren">(</span><em>percent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setbatterychange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setbatterychange" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setbatteryinflight">
+<code class="descname">setbatteryinflight</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setbatteryinflight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setbatteryinflight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setbatterytotal">
+<code class="descname">setbatterytotal</code><span class="sig-paren">(</span><em>percent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setbatterytotal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setbatterytotal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setcurrentlatitude">
+<code class="descname">setcurrentlatitude</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setcurrentlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setcurrentlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setcurrentlongitude">
+<code class="descname">setcurrentlongitude</code><span class="sig-paren">(</span><em>lon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setcurrentlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setcurrentlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setdestinationlatitude">
+<code class="descname">setdestinationlatitude</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setdestinationlatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setdestinationlatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setdestinationlongitude">
+<code class="descname">setdestinationlongitude</code><span class="sig-paren">(</span><em>lon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setdestinationlongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setdestinationlongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setdronestate">
+<code class="descname">setdronestate</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setdronestate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setdronestate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.setdronetype">
+<code class="descname">setdronetype</code><span class="sig-paren">(</span><em>dronetype</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.setdronetype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.setdronetype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.sethomelatitude">
+<code class="descname">sethomelatitude</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.sethomelatitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.sethomelatitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.sethomelongitude">
+<code class="descname">sethomelongitude</code><span class="sig-paren">(</span><em>lon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.sethomelongitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.sethomelongitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.takeoff">
+<code class="descname">takeoff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.takeoff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.takeoff" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="DroneProject.VirtualDrone.VirtualDrone.updatecurrentposition">
+<code class="descname">updatecurrentposition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/VirtualDrone.html#VirtualDrone.updatecurrentposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.VirtualDrone.VirtualDrone.updatecurrentposition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject.save_load">
+<span id="droneproject-save-load-module"></span><h2>DroneProject.save_load module<a class="headerlink" href="#module-DroneProject.save_load" title="Permalink to this headline">¶</a></h2>
+<p>Used for functions relating to saving and loading Item Lists</p>
+<dl class="function">
+<dt id="DroneProject.save_load.LoadDroneList">
+<code class="descclassname">DroneProject.save_load.</code><code class="descname">LoadDroneList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/save_load.html#LoadDroneList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.save_load.LoadDroneList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads list of drones using pickle</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.save_load.LoadFlightList">
+<code class="descclassname">DroneProject.save_load.</code><code class="descname">LoadFlightList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/save_load.html#LoadFlightList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.save_load.LoadFlightList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads list of flights using pickle</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.save_load.LoadLocationList">
+<code class="descclassname">DroneProject.save_load.</code><code class="descname">LoadLocationList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/save_load.html#LoadLocationList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.save_load.LoadLocationList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads list of locations using pickle</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.save_load.SaveDroneList">
+<code class="descclassname">DroneProject.save_load.</code><code class="descname">SaveDroneList</code><span class="sig-paren">(</span><em>dronelist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/save_load.html#SaveDroneList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.save_load.SaveDroneList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves List of drones using pickle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.save_load.SaveFlightList">
+<code class="descclassname">DroneProject.save_load.</code><code class="descname">SaveFlightList</code><span class="sig-paren">(</span><em>flightlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/save_load.html#SaveFlightList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.save_load.SaveFlightList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save List of flights using pickle</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DroneProject.save_load.SaveLocationList">
+<code class="descclassname">DroneProject.save_load.</code><code class="descname">SaveLocationList</code><span class="sig-paren">(</span><em>locationlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/save_load.html#SaveLocationList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.save_load.SaveLocationList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves List of locations using pickle</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-DroneProject">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DroneProject" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Automated Drone Traffic Control System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DroneProject</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DroneProject package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.AbstractDrone">DroneProject.AbstractDrone module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.BebopDrone">DroneProject.BebopDrone module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.DroneController">DroneProject.DroneController module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.Flight">DroneProject.Flight module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.FloatInput">DroneProject.FloatInput module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.Location">DroneProject.Location module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.MainMenu2">DroneProject.MainMenu2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.MapViewApp">DroneProject.MapViewApp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.PrintLists">DroneProject.PrintLists module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.VirtualDrone">DroneProject.VirtualDrone module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject.save_load">DroneProject.save_load module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DroneProject">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">DroneProject</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">DroneProject</a></li>
+      <li>Next: <a href="DroneProject.database.html" title="next chapter">DroneProject.database package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, James Hall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/DroneProject.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
