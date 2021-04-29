@@ -227,20 +227,24 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">LocationMarkerLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">locationview</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
-    
-    <span class="c1">#Adds functionality to kivy&#39;s on_touch_down() event, specificly for adding new Locations    </span>
+        
 <div class="viewcode-block" id="LocationMarkerLayer.on_touch_down"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.LocationMarkerLayer.on_touch_down">[docs]</a>    <span class="k">def</span> <span class="nf">on_touch_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">touch</span><span class="p">):</span>
-            <span class="k">global</span> <span class="n">new_location_add</span>
-            <span class="k">global</span> <span class="n">location_layer</span>
-            
-            <span class="k">if</span> <span class="n">new_location_add</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">touch</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">touch</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">location_layer</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">touch</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">touch</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">LocationMarkerLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">on_touch_down</span><span class="p">(</span><span class="n">touch</span><span class="p">)</span></div>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds functionality to kivy&#39;s on_touch_down() event, specificly for adding new Locations </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">global</span> <span class="n">new_location_add</span>
+        <span class="k">global</span> <span class="n">location_layer</span>
+        
+        <span class="k">if</span> <span class="n">new_location_add</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">touch</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">touch</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">location_layer</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">touch</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">touch</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">LocationMarkerLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">on_touch_down</span><span class="p">(</span><span class="n">touch</span><span class="p">)</span></div>
     
-    <span class="c1">#Adds location markers to MapLayer</span>
 <div class="viewcode-block" id="LocationMarkerLayer.draw_locations"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.LocationMarkerLayer.draw_locations">[docs]</a>    <span class="k">def</span> <span class="nf">draw_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds location markers to MapLayer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">locationview</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">=</span> <span class="n">locationview</span><span class="o">.</span><span class="n">zoom</span>
         <span class="k">global</span> <span class="n">locations</span>
@@ -248,9 +252,11 @@
         <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">locations</span><span class="p">:</span>  
             <span class="c1"># Draw new Location markers</span>
             <span class="n">locationview</span><span class="o">.</span><span class="n">add_marker</span><span class="p">(</span><span class="n">MapMarker</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="n">location</span><span class="o">.</span><span class="n">getlocationlatitude</span><span class="p">(),</span> <span class="n">lon</span><span class="o">=</span><span class="n">location</span><span class="o">.</span><span class="n">getlocationlongitude</span><span class="p">(),</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;images/MapMarker.png&#39;</span><span class="p">))</span></div>
-    
-    <span class="c1">#Adds a location to system       </span>
+          
 <div class="viewcode-block" id="LocationMarkerLayer.add_point"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.LocationMarkerLayer.add_point">[docs]</a>    <span class="k">def</span> <span class="nf">add_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a location to system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">global</span> <span class="n">locations</span>
         <span class="k">global</span> <span class="n">new_location_add</span>
         <span class="k">global</span> <span class="n">name</span>
@@ -264,15 +270,20 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">draw_locations</span><span class="p">()</span>
             <span class="n">SaveLocationList</span><span class="p">(</span><span class="n">locations</span><span class="p">)</span></div>
     
-    <span class="c1">#Set name for new location to be added to system</span>
+
 <div class="viewcode-block" id="LocationMarkerLayer.set_loc_name"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.LocationMarkerLayer.set_loc_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_loc_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set name for new location to be added to system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">global</span> <span class="n">name</span>
         <span class="k">global</span> <span class="n">new_location_add</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">nname</span>
         <span class="n">new_location_add</span> <span class="o">=</span> <span class="kc">True</span></div>
-    
-    <span class="c1">#Popup used to set name for new location    </span>
+       
 <div class="viewcode-block" id="LocationMarkerLayer.add_point_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.LocationMarkerLayer.add_point_popup">[docs]</a>    <span class="k">def</span> <span class="nf">add_point_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Popup used to set name for new location </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mapview</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
         <span class="k">global</span> <span class="n">locations</span>
         <span class="k">global</span> <span class="n">name</span>
@@ -288,8 +299,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>    
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span></div>
     
-    <span class="c1">#Popup to display a list of locations on system    </span>
+    
 <div class="viewcode-block" id="LocationMarkerLayer.view_locations_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.LocationMarkerLayer.view_locations_popup">[docs]</a>    <span class="k">def</span> <span class="nf">view_locations_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Popup to display a list of locations on system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
            
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">BoxLayout</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span><span class="n">spacing</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
         
@@ -304,9 +318,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;View Location List&quot;</span><span class="p">,</span> <span class="n">auto_dismiss</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size_hint</span><span class="o">=</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="o">.</span><span class="mi">8</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span></div>
-    
-    <span class="c1">#Popup used to remove location from system  </span>
+     
 <div class="viewcode-block" id="LocationMarkerLayer.remove_location_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.LocationMarkerLayer.remove_location_popup">[docs]</a>    <span class="k">def</span> <span class="nf">remove_location_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Popup used to remove location from system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">def</span> <span class="nf">buttonPressRemoveLocation</span><span class="p">(</span><span class="n">selection</span><span class="p">):</span>
             <span class="k">global</span> <span class="n">locations</span>
             <span class="k">global</span> <span class="n">drone_hidden</span>
@@ -350,8 +366,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">droneview</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
     
-    <span class="c1">#Adds a virtual drone to the system</span>
 <div class="viewcode-block" id="DroneMarkerLayer.add_virtual_drone"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.DroneMarkerLayer.add_virtual_drone">[docs]</a>    <span class="k">def</span> <span class="nf">add_virtual_drone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">home</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a virtual drone to the system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">global</span> <span class="n">locations</span>
         <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">home</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">locations</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">locations</span><span class="p">:</span>
@@ -365,9 +383,11 @@
 
             <span class="n">drones</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newdrone</span><span class="p">)</span>
             <span class="n">SaveDroneList</span><span class="p">(</span><span class="n">drones</span><span class="p">)</span></div>
-    
-    <span class="c1">#Popup to add virtual drone to the system   </span>
+      
 <div class="viewcode-block" id="DroneMarkerLayer.add_virtual_drone_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.DroneMarkerLayer.add_virtual_drone_popup">[docs]</a>    <span class="k">def</span> <span class="nf">add_virtual_drone_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Popup to add virtual drone to the system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">global</span> <span class="n">drones</span>
         <span class="k">global</span> <span class="n">locations</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">BoxLayout</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span><span class="n">spacing</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
@@ -392,12 +412,16 @@
         <span class="c1">#Add popup widget to root</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>    
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span></div>
-    
-    <span class="c1">#Popup the remove a drone from the system   </span>
+      
 <div class="viewcode-block" id="DroneMarkerLayer.remove_drone_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.DroneMarkerLayer.remove_drone_popup">[docs]</a>    <span class="k">def</span> <span class="nf">remove_drone_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    
-        <span class="c1">#Function removes drone when button pressed</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Popup the remove a drone from the system </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">def</span> <span class="nf">buttonPressRemoveDrone</span><span class="p">(</span><span class="n">selection</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Function removes drone when button pressed</span>
+<span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">global</span> <span class="n">drones</span>
             <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">drones</span><span class="p">):</span>
                 <span class="k">return</span>
@@ -426,9 +450,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Remove Drone&quot;</span><span class="p">,</span> <span class="n">auto_dismiss</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size_hint</span><span class="o">=</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="o">.</span><span class="mi">8</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span></div>
-    
-    <span class="c1">#Used to choose suitable image for drawing drone marker on screen    </span>
+        
 <div class="viewcode-block" id="DroneMarkerLayer.insert_drone_image"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.DroneMarkerLayer.insert_drone_image">[docs]</a>    <span class="k">def</span> <span class="nf">insert_drone_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">,</span> <span class="o">*</span><span class="n">largs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to choose suitable image for drawing drone marker on screen </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">droneview</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
         <span class="k">if</span> <span class="n">drone</span><span class="o">.</span><span class="n">getdronestate</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Descending&quot;</span> <span class="ow">and</span> <span class="n">drone</span><span class="o">.</span><span class="n">getbattery</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
             <span class="n">droneview</span><span class="o">.</span><span class="n">add_marker</span><span class="p">(</span><span class="n">MapMarker</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">getcurrentlatitude</span><span class="p">(),</span> <span class="n">lon</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">getcurrentlongitude</span><span class="p">(),</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;images/DroneDescending.png&quot;</span><span class="p">))</span>
@@ -448,9 +474,11 @@
             <span class="n">droneview</span><span class="o">.</span><span class="n">add_marker</span><span class="p">(</span><span class="n">MapMarker</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">getcurrentlatitude</span><span class="p">(),</span> <span class="n">lon</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">getcurrentlongitude</span><span class="p">(),</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;images/Drone50batt.png&quot;</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">droneview</span><span class="o">.</span><span class="n">add_marker</span><span class="p">(</span><span class="n">MapMarker</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">getcurrentlatitude</span><span class="p">(),</span> <span class="n">lon</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">getcurrentlongitude</span><span class="p">(),</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;images/Drone10batt.png&quot;</span><span class="p">))</span></div>
-    
-    <span class="c1">#Adds drone markers to MapLayer   </span>
+       
 <div class="viewcode-block" id="DroneMarkerLayer.draw_drones"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.DroneMarkerLayer.draw_drones">[docs]</a>    <span class="k">def</span> <span class="nf">draw_drones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dronel</span><span class="p">,</span> <span class="n">locationl</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds drone markers to MapLayer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dronel</span> <span class="o">=</span> <span class="n">dronel</span>
         <span class="n">locationl</span> <span class="o">=</span> <span class="n">locationl</span>
         <span class="n">droneview</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
@@ -480,16 +508,21 @@
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">05</span><span class="p">)</span>
             <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span></div></div>
                 
-<span class="c1">###Class related to flight CRUD operations</span>
+
 <div class="viewcode-block" id="FlightLayer"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.FlightLayer">[docs]</a><span class="k">class</span> <span class="nc">FlightLayer</span><span class="p">(</span><span class="n">MapLayer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class related to flight CRUD operations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">FlightLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">droneview</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
     
-    <span class="c1">#Displays list of flights on system</span>
 <div class="viewcode-block" id="FlightLayer.view_flights_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.FlightLayer.view_flights_popup">[docs]</a>    <span class="k">def</span> <span class="nf">view_flights_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Displays list of flights on system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
            
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">BoxLayout</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span><span class="n">spacing</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
         
@@ -504,8 +537,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  </div>
     
-    <span class="c1">#Popup used to add flights to the system</span>
+
 <div class="viewcode-block" id="FlightLayer.create_flight_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.FlightLayer.create_flight_popup">[docs]</a>    <span class="k">def</span> <span class="nf">create_flight_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Popup used to add flights to the system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mapview</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
         <span class="k">global</span> <span class="n">flights</span>
         <span class="k">global</span> <span class="n">locations</span>
@@ -567,11 +603,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Add Flight&quot;</span><span class="p">,</span> <span class="n">auto_dismiss</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size_hint</span><span class="o">=</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="o">.</span><span class="mi">8</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  </div>
-    
-    <span class="c1">#Remove flight popup   </span>
+     
 <div class="viewcode-block" id="FlightLayer.remove_flight_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.FlightLayer.remove_flight_popup">[docs]</a>    <span class="k">def</span> <span class="nf">remove_flight_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#deletes flight from system on button press</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove flight popup </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="k">def</span> <span class="nf">buttonPressRemoveFlight</span><span class="p">(</span><span class="n">selection</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Deletes flight from system on button press</span>
+<span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">global</span> <span class="n">flights</span>
             <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flights</span><span class="p">):</span>
                 <span class="k">del</span> <span class="n">flights</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -594,12 +635,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> </div>
     
-    <span class="c1">#Abort flight popup    </span>
+   
 <div class="viewcode-block" id="FlightLayer.abort_flight_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.FlightLayer.abort_flight_popup">[docs]</a>    <span class="k">def</span> <span class="nf">abort_flight_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Abort flight popup</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         
-        <span class="c1">#Set flight parameter flight_abort to True, this will be checked </span>
-        <span class="c1">#by the DroneController.MoveDrone() function and the drone will be redirected</span>
         <span class="k">def</span> <span class="nf">buttonPressAbortFlight</span><span class="p">(</span><span class="n">selection</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Set flight parameter flight_abort to True, this will be checked </span>
+<span class="sd">            by the DroneController.MoveDrone() function and the drone will be redirected</span>
+<span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">global</span> <span class="n">flights</span>
             <span class="n">flights</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">setflightabort</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">SaveFlightList</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span>
@@ -623,11 +669,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Abort Flight&quot;</span><span class="p">,</span> <span class="n">auto_dismiss</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size_hint</span><span class="o">=</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="o">.</span><span class="mi">8</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> </div>
-    
-    <span class="c1">#Begin a flight popup   </span>
+      
 <div class="viewcode-block" id="FlightLayer.start_flight_popup"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.FlightLayer.start_flight_popup">[docs]</a>    <span class="k">def</span> <span class="nf">start_flight_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#Begins flight on button press</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Begin a flight popup</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">def</span> <span class="nf">buttonPressBeginFlight</span><span class="p">(</span><span class="n">selection</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Begins flight on button press</span>
+<span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">global</span> <span class="n">flights</span>
             <span class="k">global</span> <span class="n">locations</span>
             <span class="k">global</span> <span class="n">drones</span>
@@ -655,9 +706,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Start Flight&quot;</span><span class="p">,</span> <span class="n">auto_dismiss</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size_hint</span><span class="o">=</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="o">.</span><span class="mi">8</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">popup</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>                        </div></div>
-            
-<span class="c1">###Class related to displaying lines between destinations !Currently incomplete           </span>
+                      
 <div class="viewcode-block" id="LineMapLayer"><a class="viewcode-back" href="../../source/DroneProject.html#DroneProject.MapViewApp.LineMapLayer">[docs]</a><span class="k">class</span> <span class="nc">LineMapLayer</span><span class="p">(</span><span class="n">MapLayer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class related to displaying lines between destinations !Currently incomplete</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">LineMapLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
