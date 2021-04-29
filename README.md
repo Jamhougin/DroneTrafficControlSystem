@@ -7,4 +7,4 @@ The purpose of the Automated Drone Traffic Control System is to allow its user t
 There are collision detection mechanisms in place to ensure that the drones do not collide with one another while in flight. The system also has the ability to abort any flight in case of emergency and direct drones to the nearest safe landing area.
 
 
-![alt text](https://github.com/Jamhougin/DroneTrafficControlSystem/tree/master/images/pasted image 0.png?raw=true)
+![alt text](https://github.com/Jamhougin/DroneTrafficControlSystem/tree/master/images/mainscreen.png?raw=true)
