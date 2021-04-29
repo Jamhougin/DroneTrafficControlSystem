@@ -1,15 +1,13 @@
 # -*- coding: UTF-8 -*-
 
-'''
-Name:        James Hall
-Student No.: C00007006
-Institute:   Institute of Technology Carlow
-Project:     Drone Traffic Control System     
-Date:        April 2021 
-License:     GNU Affero General Public License v3.0
 
-Virtual Drone class
-'''
+#Name:        James Hall
+#Student No.: C00007006
+#Institute:   Institute of Technology Carlow
+#Project:     Drone Traffic Control System     
+#Date:        April 2021 
+#License:     GNU Affero General Public License v3.0
+
 
 import math
 import time
@@ -22,7 +20,9 @@ from AbstractDrone import AbstractDrone
 battery_drain = .055
 
 class VirtualDrone(AbstractDrone):
-
+    """   
+    Virtual Drone class
+    """
     def __init__(self, drone_id, dronetype, home_latitude, home_longitude, destination_latitude, destination_longitude, altitude, battery, speed, flying_state, heading):
         self.home_latitude = home_latitude
         self.home_longitude = home_longitude

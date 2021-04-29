@@ -1,16 +1,21 @@
 # -*- coding: UTF-8 -*-
 
-'''
-Name:        James Hall
-Student No.: C00007006
-Institute:   Institute of Technology Carlow
-Project:     Drone Traffic Control System     
-Date:        April 2021 
-License:     GNU Affero General Public License v3.0
 
-Main App Screen and Layers
-'''
+#Name:        James Hall
+#Student No.: C00007006
+#Institute:   Institute of Technology Carlow
+#Project:     Drone Traffic Control System     
+#Date:        April 2021 
+#License:     GNU Affero General Public License v3.0
 
+#Main App Screen and Layers
+
+"""
+MapViewApp.py
+=================================
+
+This is the core module for the ADTCS project
+"""
 import os
 import random
 from math import *
@@ -70,6 +75,9 @@ name = ''
 location_layer = None
  
 class MapViewApp(App):
+    """
+    Main App Class
+    """
     mapview = None
  
     def __init__(self, **kwargs):
@@ -175,26 +183,33 @@ class MapViewApp(App):
 
 ###Class related to CRUD location operations
 class LocationMarkerLayer(MapLayer):
+    """
+    Class for adding Location and Location Markers
+    """
     locationview = None
     
     def __init__(self, **kwargs):
         super(LocationMarkerLayer, self).__init__(**kwargs)
         self.zoom = 0
         locationview = self.parent
-    
-    #Adds functionality to kivy's on_touch_down() event, specificly for adding new Locations    
+        
     def on_touch_down(self, touch):
-            global new_location_add
-            global location_layer
-            
-            if new_location_add == True:
-                print(touch.pos[0])
-                print(touch.pos[1])
-                location_layer.add_point(touch.pos[0],touch.pos[1],0)
-            return super(LocationMarkerLayer, self).on_touch_down(touch)
+        """
+        Adds functionality to kivy's on_touch_down() event, specificly for adding new Locations 
+        """
+        global new_location_add
+        global location_layer
+        
+        if new_location_add == True:
+            print(touch.pos[0])
+            print(touch.pos[1])
+            location_layer.add_point(touch.pos[0],touch.pos[1],0)
+        return super(LocationMarkerLayer, self).on_touch_down(touch)
     
-    #Adds location markers to MapLayer
     def draw_locations(self, *args):
+        """
+        Adds location markers to MapLayer
+        """
         locationview = self.parent
         self.zoom = locationview.zoom
         global locations
@@ -202,9 +217,11 @@ class LocationMarkerLayer(MapLayer):
         for location in locations:  
             # Draw new Location markers
             locationview.add_marker(MapMarker(lat=location.getlocationlatitude(), lon=location.getlocationlongitude(), source='images/MapMarker.png'))
-    
-    #Adds a location to system       
+          
     def add_point(self, lat, lon, alt):
+        """
+        Adds a location to system
+        """
         global locations
         global new_location_add
         global name
@@ -218,15 +235,20 @@ class LocationMarkerLayer(MapLayer):
             self.draw_locations()
             SaveLocationList(locations)
     
-    #Set name for new location to be added to system
+
     def set_loc_name(self, nname):
+        """
+        Set name for new location to be added to system
+        """
         global name
         global new_location_add
         name = nname
         new_location_add = True
-    
-    #Popup used to set name for new location    
+       
     def add_point_popup(self):
+        """
+        Popup used to set name for new location 
+        """
         mapview = self.parent
         global locations
         global name
@@ -242,8 +264,11 @@ class LocationMarkerLayer(MapLayer):
         self.popup.add_widget(self.root)    
         self.popup.open()
     
-    #Popup to display a list of locations on system    
+    
     def view_locations_popup(self):
+        """
+        Popup to display a list of locations on system
+        """
            
         self.root = BoxLayout(orientation='vertical',spacing=15)
         
@@ -258,9 +283,11 @@ class LocationMarkerLayer(MapLayer):
         self.popup = Popup(title="View Location List", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()
-    
-    #Popup used to remove location from system  
+     
     def remove_location_popup(self):
+        """
+        Popup used to remove location from system
+        """
         def buttonPressRemoveLocation(selection):
             global locations
             global drone_hidden
@@ -292,8 +319,11 @@ class LocationMarkerLayer(MapLayer):
         self.popup.add_widget(self.root)
         self.popup.open()
                           
-###Class related to CRUD drones operations
+
 class DroneMarkerLayer(MapLayer):
+    """
+    Class related to CRUD drones operations
+    """
     droneview = None
     
     def __init__(self, **kwargs):
@@ -301,8 +331,10 @@ class DroneMarkerLayer(MapLayer):
         self.zoom = 0
         droneview = self.parent
     
-    #Adds a virtual drone to the system
     def add_virtual_drone(self, name, home):
+        """
+        Adds a virtual drone to the system
+        """
         global locations
         if int(home) <= len(locations):
             for location in locations:
@@ -316,9 +348,11 @@ class DroneMarkerLayer(MapLayer):
 
             drones.append(newdrone)
             SaveDroneList(drones)
-    
-    #Popup to add virtual drone to the system   
+      
     def add_virtual_drone_popup(self):
+        """
+        Popup to add virtual drone to the system
+        """
         global drones
         global locations
         self.root = BoxLayout(orientation='vertical',spacing=15)
@@ -343,12 +377,16 @@ class DroneMarkerLayer(MapLayer):
         #Add popup widget to root
         self.popup.add_widget(self.root)    
         self.popup.open()
-    
-    #Popup the remove a drone from the system   
+      
     def remove_drone_popup(self):
-    
-        #Function removes drone when button pressed
+        """
+        Popup the remove a drone from the system 
+        """
+
         def buttonPressRemoveDrone(selection):
+            """
+            Function removes drone when button pressed
+            """
             global drones
             if int(selection) < 1 or int(selection) > len(drones):
                 return
@@ -377,9 +415,11 @@ class DroneMarkerLayer(MapLayer):
         self.popup = Popup(title="Remove Drone", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()
-    
-    #Used to choose suitable image for drawing drone marker on screen    
+        
     def insert_drone_image(self, drone, *largs):
+        """
+        Used to choose suitable image for drawing drone marker on screen 
+        """
         droneview = self.parent
         if drone.getdronestate() == "Descending" and drone.getbattery() > 50:
             droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/DroneDescending.png"))
@@ -399,9 +439,11 @@ class DroneMarkerLayer(MapLayer):
             droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/Drone50batt.png"))
         else:
             droneview.add_marker(MapMarker(lat=drone.getcurrentlatitude(), lon=drone.getcurrentlongitude(), source="images/Drone10batt.png"))
-    
-    #Adds drone markers to MapLayer   
+       
     def draw_drones(self, dronel, locationl):
+        """
+        Adds drone markers to MapLayer
+        """
         dronel = dronel
         locationl = locationl
         droneview = self.parent
@@ -431,16 +473,21 @@ class DroneMarkerLayer(MapLayer):
             time.sleep(.05)
             i = i+1
                 
-###Class related to flight CRUD operations
+
 class FlightLayer(MapLayer):
+    """
+    Class related to flight CRUD operations
+    """
 
     def __init__(self, **kwargs):
         super(FlightLayer, self).__init__(**kwargs)
         self.zoom = 0
         droneview = self.parent
     
-    #Displays list of flights on system
     def view_flights_popup(self):
+        """
+        Displays list of flights on system
+        """
            
         self.root = BoxLayout(orientation='vertical',spacing=15)
         
@@ -455,8 +502,11 @@ class FlightLayer(MapLayer):
         self.popup.add_widget(self.root)
         self.popup.open()  
     
-    #Popup used to add flights to the system
+
     def create_flight_popup(self):
+        """
+        Popup used to add flights to the system
+        """
         mapview = self.parent
         global flights
         global locations
@@ -518,11 +568,16 @@ class FlightLayer(MapLayer):
         self.popup = Popup(title="Add Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()  
-    
-    #Remove flight popup   
+     
     def remove_flight_popup(self):
-        #deletes flight from system on button press
+        """
+        Remove flight popup 
+        """
+        
         def buttonPressRemoveFlight(selection):
+            """
+            Deletes flight from system on button press
+            """
             global flights
             if int(selection) <= len(flights):
                 del flights[int(selection)-1]
@@ -545,12 +600,17 @@ class FlightLayer(MapLayer):
         self.popup.add_widget(self.root)
         self.popup.open() 
     
-    #Abort flight popup    
+   
     def abort_flight_popup(self):
+        """
+        Abort flight popup
+        """
         
-        #Set flight parameter flight_abort to True, this will be checked 
-        #by the DroneController.MoveDrone() function and the drone will be redirected
         def buttonPressAbortFlight(selection):
+            """
+            Set flight parameter flight_abort to True, this will be checked 
+            by the DroneController.MoveDrone() function and the drone will be redirected
+            """
             global flights
             flights[int(selection)-1].setflightabort(True)
             SaveFlightList(flights)
@@ -574,11 +634,16 @@ class FlightLayer(MapLayer):
         self.popup = Popup(title="Abort Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open() 
-    
-    #Begin a flight popup   
+      
     def start_flight_popup(self):
-        #Begins flight on button press
+        """
+        Begin a flight popup
+        """
+
         def buttonPressBeginFlight(selection):
+            """
+            Begins flight on button press
+            """
             global flights
             global locations
             global drones
@@ -606,9 +671,11 @@ class FlightLayer(MapLayer):
         self.popup = Popup(title="Start Flight", auto_dismiss=True, size_hint=(.9,.8))
         self.popup.add_widget(self.root)
         self.popup.open()                        
-            
-###Class related to displaying lines between destinations !Currently incomplete           
+                      
 class LineMapLayer(MapLayer):
+    """
+    Class related to displaying lines between destinations !Currently incomplete
+    """
     
     def __init__(self, **kwargs):
         super(LineMapLayer, self).__init__(**kwargs)

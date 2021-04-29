@@ -1,19 +1,21 @@
 # -*- coding: UTF-8 -*-
 
-'''
-Name:        James Hall
-Student No.: C00007006
-Institute:   Institute of Technology Carlow
-Project:     Drone Traffic Control System     
-Date:        April 2021 
-License:     GNU Affero General Public License v3.0
 
-Abstract Drone class
-'''
+#Name:        James Hall
+#Student No.: C00007006
+#Institute:   Institute of Technology Carlow
+#Project:     Drone Traffic Control System     
+#Date:        April 2021 
+#License:     GNU Affero General Public License v3.0
+
+#Abstract Drone class
+
 from abc import ABC, abstractmethod
 
 class AbstractDrone(ABC):
-    
+    """
+    Abstract class for drone types
+    """
     home_latitude = 0
     home_longtitude = 0
     current_latitude = 0

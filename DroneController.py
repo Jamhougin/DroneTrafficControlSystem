@@ -1,15 +1,17 @@
 # -*- coding: UTF-8 -*-
 
-'''
-Name:        James Hall
-Student No.: C00007006
-Institute:   Institute of Technology Carlow
-Project:     Drone Traffic Control System     
-Date:        April 2021 
-License:     GNU Affero General Public License v3.0
 
+#Name:        James Hall
+#Student No.: C00007006
+#Institute:   Institute of Technology Carlow
+#Project:     Drone Traffic Control System     
+#Date:        April 2021 
+#License:     GNU Affero General Public License v3.0
+"""
 Drone Controller
-'''
+============================
+Contains all drone control algorithms
+"""
 
 import pickle
 import math
@@ -42,7 +44,7 @@ def MoveDrone(drone, flight, dronelist, lat, lon, locations):
     while ((drone.getdistancetoposition(float(drone.home_latitude), float(drone.home_longitude)) <= distancetodest)):
         canmove = True
         for d in dronelist:
-            if (CollisionDetection(drone, d) and d.getdronestate() != "Grounded" and flight.flight_drone != d.drone_id and float(drone.gethomelatitude())>float(d.gethomelatitude()) and float(drone.gethomelongitude())>float(d.gethomelongitude())):
+            if (CollisionDetection(drone, d) and d.getdronestate() != "Grounded" and flight.flight_drone != d.drone_id and ((int(drone.getbattery()) < int(d.getbattery())) or (float(drone.gethomelatitude())>float(d.gethomelatitude()) and float(drone.gethomelongitude())>float(d.gethomelongitude())))):
                 canmove = False
                 break
         if(canmove and flight.getflightabort() == False):
