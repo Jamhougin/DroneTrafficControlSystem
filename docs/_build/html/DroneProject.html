@@ -317,52 +317,72 @@
 <dl class="function">
 <dt id="DroneProject.DroneController.ChangeAltitude">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">ChangeAltitude</code><span class="sig-paren">(</span><em>drone</em>, <em>newalt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#ChangeAltitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.ChangeAltitude" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This function handles changes in altitude</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.CollisionDetection">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">CollisionDetection</code><span class="sig-paren">(</span><em>drone</em>, <em>otherdrone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#CollisionDetection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.CollisionDetection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Collision detection, detects if other drone is within 30m horizontally or 10m vertically</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.Hover">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">Hover</code><span class="sig-paren">(</span><em>Drone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#Hover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.Hover" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This function may be called to cause the drone to hover in place</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.LandDrone">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">LandDrone</code><span class="sig-paren">(</span><em>Drone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#LandDrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.LandDrone" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Function to land drone</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.MoveDrone">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">MoveDrone</code><span class="sig-paren">(</span><em>drone</em>, <em>flight</em>, <em>dronelist</em>, <em>lat</em>, <em>lon</em>, <em>locations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#MoveDrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.MoveDrone" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This function handles the logic for drone in flight.
+It calls the collision detection function</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.TakeOffFlyLand">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">TakeOffFlyLand</code><span class="sig-paren">(</span><em>drone</em>, <em>flight</em>, <em>dronelist</em>, <em>locationlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#TakeOffFlyLand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.TakeOffFlyLand" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Function called to execute a full flight</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.findnearestlocation">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">findnearestlocation</code><span class="sig-paren">(</span><em>drone</em>, <em>locations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#findnearestlocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.findnearestlocation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Finds nearest location to drone</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.getdistancetodestination">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">getdistancetodestination</code><span class="sig-paren">(</span><em>drone</em>, <em>flight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#getdistancetodestination"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.getdistancetodestination" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get travel distance from point to point
+Formula adopted from top answer and source of answer:
+<a class="reference external" href="https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula">https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula</a>
+<a class="reference external" href="http://www.movable-type.co.uk/scripts/latlong.html">http://www.movable-type.co.uk/scripts/latlong.html</a></p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.getdistancetodrone">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">getdistancetodrone</code><span class="sig-paren">(</span><em>drone</em>, <em>otherdrone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#getdistancetodrone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.getdistancetodrone" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get travel distance from point to point
+Formula adopted from top answer and source of answer:
+<a class="reference external" href="https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula">https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula</a>
+<a class="reference external" href="http://www.movable-type.co.uk/scripts/latlong.html">http://www.movable-type.co.uk/scripts/latlong.html</a></p>
+</dd></dl>
 
 <dl class="function">
 <dt id="DroneProject.DroneController.getdistancetoposition">
 <code class="descclassname">DroneProject.DroneController.</code><code class="descname">getdistancetoposition</code><span class="sig-paren">(</span><em>drone</em>, <em>poslat</em>, <em>poslon</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DroneProject/DroneController.html#getdistancetoposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DroneProject.DroneController.getdistancetoposition" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get travel distance from point to point
+Formula adopted from top answer and source of answer:
+<a class="reference external" href="https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula">https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula</a>
+<a class="reference external" href="http://www.movable-type.co.uk/scripts/latlong.html">http://www.movable-type.co.uk/scripts/latlong.html</a></p>
+</dd></dl>
 
 </div>
 </div>
